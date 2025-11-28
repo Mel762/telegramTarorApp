@@ -1,0 +1,476 @@
+Limit Check Start: User 999999, Spread one
+Limit Check: User 999999 -> Found: true, Tier: free, LastDate: null, DailyOne: 8
+Resetting counters for 999999. Old Date: null, New: 2025-11-27
+DEBUG: Incrementing counter for UserID: 3 (Spread: one)
+DEBUG: Increment Result (One): {"stmt":{},"lastID":85,"changes":1}
+DEBUG: New Count for User 3: 1
+Limit Check Start: User 999999, Spread one
+Limit Check: User 999999 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 1
+No reset needed. Date matches: 2025-11-27
+Limit Check Start: User 12345, Spread day
+Limit Check: User 12345 -> Found: true, Tier: free, LastDate: null, DailyOne: 4
+Resetting counters for 12345. Old Date: null, New: 2025-11-27
+DEBUG: Incrementing counter for UserID: 2 (Spread: day)
+Limit Check Start: User 12345, Spread day
+Limit Check: User 12345 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 0
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 2 (Spread: day)
+Limit Check Start: User 12345, Spread day
+Limit Check: User 12345 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 0
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 2 (Spread: day)
+Limit Check Start: User 12345, Spread one
+Limit Check: User 12345 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 0
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 2 (Spread: one)
+DEBUG: Increment Result (One): {"stmt":{},"lastID":89,"changes":1}
+DEBUG: New Count for User 2: 1
+Limit Check Start: User 12345, Spread one
+Limit Check: User 12345 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 1
+No reset needed. Date matches: 2025-11-27
+Limit Check Start: User 12345, Spread one
+Limit Check: User 12345 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 1
+No reset needed. Date matches: 2025-11-27
+Limit Check Start: User 12345, Spread one
+Limit Check: User 12345 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 1
+No reset needed. Date matches: 2025-11-27
+Limit Check Start: User 12345, Spread three
+Limit Check: User 12345 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 1
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 2 (Spread: three)
+DEBUG: Increment Result (Three): {"stmt":{},"lastID":90,"changes":1}
+Limit Check Start: User 12345, Spread three
+Limit Check: User 12345 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 1
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 2 (Spread: three)
+DEBUG: Increment Result (Three): {"stmt":{},"lastID":91,"changes":1}
+Limit Check Start: User test_free_1, Spread day
+Limit Check: User test_free_1 -> Found: true, Tier: free, LastDate: null, DailyOne: 0
+Resetting counters for test_free_1. Old Date: null, New: 2025-11-27
+DEBUG: Incrementing counter for UserID: 4 (Spread: day)
+Limit Check Start: User test_free_1, Spread day
+Limit Check: User test_free_1 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 0
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 4 (Spread: day)
+Limit Check Start: User test_free_1, Spread one
+Limit Check: User test_free_1 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 0
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 4 (Spread: one)
+DEBUG: Increment Result (One): {"stmt":{},"lastID":94,"changes":1}
+DEBUG: New Count for User 4: 1
+Limit Check Start: User test_free_1, Spread one
+Limit Check: User test_free_1 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 1
+No reset needed. Date matches: 2025-11-27
+Limit Check Start: User test_free_1, Spread three
+Limit Check: User test_free_1 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 1
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 4 (Spread: three)
+DEBUG: Increment Result (Three): {"stmt":{},"lastID":95,"changes":1}
+Limit Check Start: User test_free_1, Spread three
+Limit Check: User test_free_1 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 1
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 4 (Spread: three)
+DEBUG: Increment Result (Three): {"stmt":{},"lastID":96,"changes":1}
+Limit Check Start: User test_basic_1, Spread day
+Limit Check: User test_basic_1 -> Found: true, Tier: basic, LastDate: null, DailyOne: 0
+Resetting counters for test_basic_1. Old Date: null, New: 2025-11-27
+DEBUG: Incrementing counter for UserID: 5 (Spread: day)
+Limit Check Start: User test_basic_1, Spread day
+Limit Check: User test_basic_1 -> Found: true, Tier: basic, LastDate: 2025-11-27, DailyOne: 0
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 5 (Spread: day)
+Limit Check Start: User test_basic_1, Spread one
+Limit Check: User test_basic_1 -> Found: true, Tier: basic, LastDate: 2025-11-27, DailyOne: 0
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 5 (Spread: one)
+DEBUG: Increment Result (One): {"stmt":{},"lastID":99,"changes":1}
+DEBUG: New Count for User 5: 1
+Limit Check Start: User test_basic_1, Spread one
+Limit Check: User test_basic_1 -> Found: true, Tier: basic, LastDate: 2025-11-27, DailyOne: 1
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 5 (Spread: one)
+DEBUG: Increment Result (One): {"stmt":{},"lastID":100,"changes":1}
+DEBUG: New Count for User 5: 2
+Limit Check Start: User test_basic_1, Spread one
+Limit Check: User test_basic_1 -> Found: true, Tier: basic, LastDate: 2025-11-27, DailyOne: 2
+No reset needed. Date matches: 2025-11-27
+Limit Check Start: User test_basic_1, Spread three
+Limit Check: User test_basic_1 -> Found: true, Tier: basic, LastDate: 2025-11-27, DailyOne: 2
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 5 (Spread: three)
+DEBUG: Increment Result (Three): {"stmt":{},"lastID":101,"changes":1}
+Limit Check Start: User test_basic_1, Spread three
+Limit Check: User test_basic_1 -> Found: true, Tier: basic, LastDate: 2025-11-27, DailyOne: 2
+No reset needed. Date matches: 2025-11-27
+Limit Check Start: User test_free_1, Spread day
+Limit Check: User test_free_1 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 1
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 4 (Spread: day)
+Limit Check Start: User test_free_1, Spread day
+Limit Check: User test_free_1 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 1
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 4 (Spread: day)
+Limit Check Start: User test_free_1, Spread one
+Limit Check: User test_free_1 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 1
+No reset needed. Date matches: 2025-11-27
+Limit Check Start: User test_free_1, Spread one
+Limit Check: User test_free_1 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 1
+No reset needed. Date matches: 2025-11-27
+Limit Check Start: User test_free_1, Spread three
+Limit Check: User test_free_1 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 1
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 4 (Spread: three)
+DEBUG: Increment Result (Three): {"stmt":{},"lastID":104,"changes":1}
+Limit Check Start: User test_free_1, Spread three
+Limit Check: User test_free_1 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 1
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 4 (Spread: three)
+DEBUG: Increment Result (Three): {"stmt":{},"lastID":105,"changes":1}
+Limit Check Start: User test_basic_1, Spread day
+Limit Check: User test_basic_1 -> Found: true, Tier: basic, LastDate: 2025-11-27, DailyOne: 2
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 5 (Spread: day)
+Limit Check Start: User test_basic_1, Spread day
+Limit Check: User test_basic_1 -> Found: true, Tier: basic, LastDate: 2025-11-27, DailyOne: 2
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 5 (Spread: day)
+Limit Check Start: User test_basic_1, Spread one
+Limit Check: User test_basic_1 -> Found: true, Tier: basic, LastDate: 2025-11-27, DailyOne: 2
+No reset needed. Date matches: 2025-11-27
+Limit Check Start: User test_basic_1, Spread one
+Limit Check: User test_basic_1 -> Found: true, Tier: basic, LastDate: 2025-11-27, DailyOne: 2
+No reset needed. Date matches: 2025-11-27
+Limit Check Start: User test_basic_1, Spread one
+Limit Check: User test_basic_1 -> Found: true, Tier: basic, LastDate: 2025-11-27, DailyOne: 2
+No reset needed. Date matches: 2025-11-27
+Limit Check Start: User test_basic_1, Spread three
+Limit Check: User test_basic_1 -> Found: true, Tier: basic, LastDate: 2025-11-27, DailyOne: 2
+No reset needed. Date matches: 2025-11-27
+Limit Check Start: User test_basic_1, Spread three
+Limit Check: User test_basic_1 -> Found: true, Tier: basic, LastDate: 2025-11-27, DailyOne: 2
+No reset needed. Date matches: 2025-11-27
+Limit Check Start: User test_free_8698, Spread day
+Limit Check: User test_free_8698 -> Found: true, Tier: free, LastDate: null, DailyOne: 0
+Resetting counters for test_free_8698. Old Date: null, New: 2025-11-27
+DEBUG: Incrementing counter for UserID: 6 (Spread: day)
+Limit Check Start: User test_free_8698, Spread day
+Limit Check: User test_free_8698 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 0
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 6 (Spread: day)
+Limit Check Start: User test_free_8698, Spread one
+Limit Check: User test_free_8698 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 0
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 6 (Spread: one)
+DEBUG: Increment Result (One): {"stmt":{},"lastID":110,"changes":1}
+DEBUG: New Count for User 6: 1
+Limit Check Start: User test_free_8698, Spread one
+Limit Check: User test_free_8698 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 1
+No reset needed. Date matches: 2025-11-27
+Limit Check Start: User test_free_8698, Spread three
+Limit Check: User test_free_8698 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 1
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 6 (Spread: three)
+DEBUG: Increment Result (Three): {"stmt":{},"lastID":111,"changes":1}
+Limit Check Start: User test_free_8698, Spread three
+Limit Check: User test_free_8698 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 1
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 6 (Spread: three)
+DEBUG: Increment Result (Three): {"stmt":{},"lastID":112,"changes":1}
+Limit Check Start: User test_basic_8698, Spread day
+Limit Check: User test_basic_8698 -> Found: true, Tier: basic, LastDate: null, DailyOne: 0
+Resetting counters for test_basic_8698. Old Date: null, New: 2025-11-27
+DEBUG: Incrementing counter for UserID: 7 (Spread: day)
+Limit Check Start: User test_basic_8698, Spread day
+Limit Check: User test_basic_8698 -> Found: true, Tier: basic, LastDate: 2025-11-27, DailyOne: 0
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 7 (Spread: day)
+Limit Check Start: User test_basic_8698, Spread one
+Limit Check: User test_basic_8698 -> Found: true, Tier: basic, LastDate: 2025-11-27, DailyOne: 0
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 7 (Spread: one)
+DEBUG: Increment Result (One): {"stmt":{},"lastID":115,"changes":1}
+DEBUG: New Count for User 7: 1
+Limit Check Start: User test_basic_8698, Spread one
+Limit Check: User test_basic_8698 -> Found: true, Tier: basic, LastDate: 2025-11-27, DailyOne: 1
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 7 (Spread: one)
+DEBUG: Increment Result (One): {"stmt":{},"lastID":116,"changes":1}
+DEBUG: New Count for User 7: 2
+Limit Check Start: User test_basic_8698, Spread one
+Limit Check: User test_basic_8698 -> Found: true, Tier: basic, LastDate: 2025-11-27, DailyOne: 2
+No reset needed. Date matches: 2025-11-27
+Limit Check Start: User test_basic_8698, Spread three
+Limit Check: User test_basic_8698 -> Found: true, Tier: basic, LastDate: 2025-11-27, DailyOne: 2
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 7 (Spread: three)
+DEBUG: Increment Result (Three): {"stmt":{},"lastID":117,"changes":1}
+Limit Check Start: User test_basic_8698, Spread three
+Limit Check: User test_basic_8698 -> Found: true, Tier: basic, LastDate: 2025-11-27, DailyOne: 2
+No reset needed. Date matches: 2025-11-27
+Limit Check Start: User 12345, Spread day
+Limit Check: User 12345 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 1
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 2 (Spread: day)
+Limit Check Start: User 12345, Spread day
+Limit Check: User 12345 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 1
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 2 (Spread: day)
+Limit Check Start: User 12345, Spread three
+Limit Check: User 12345 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 1
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 2 (Spread: three)
+DEBUG: Increment Result (Three): {"stmt":{},"lastID":120,"changes":1}
+Limit Check Start: User 12345, Spread three
+Limit Check: User 12345 -> Found: true, Tier: free, LastDate: 2025-11-27, DailyOne: 1
+No reset needed. Date matches: 2025-11-27
+DEBUG: Incrementing counter for UserID: 2 (Spread: three)
+DEBUG: Increment Result (Three): {"stmt":{},"lastID":121,"changes":1}
+Limit Check Start: User test_free_8715, Spread day
+Limit Check: User test_free_8715 -> Found: true, Tier: free, LastDate: null, DailyOne: 0
+Resetting counters for test_free_8715. Old Date: null, New: 2025-11-28
+DEBUG: Incrementing counter for UserID: 8 (Spread: day)
+Limit Check Start: User test_free_8715, Spread day
+Limit Check: User test_free_8715 -> Found: true, Tier: free, LastDate: 2025-11-28, DailyOne: 0
+No reset needed. Date matches: 2025-11-28
+DEBUG: Incrementing counter for UserID: 8 (Spread: day)
+Limit Check Start: User test_free_8715, Spread one
+Limit Check: User test_free_8715 -> Found: true, Tier: free, LastDate: 2025-11-28, DailyOne: 0
+No reset needed. Date matches: 2025-11-28
+DEBUG: Incrementing counter for UserID: 8 (Spread: one)
+DEBUG: Increment Result (One): {"stmt":{},"lastID":124,"changes":1}
+DEBUG: New Count for User 8: 1
+Limit Check Start: User test_free_8715, Spread one
+Limit Check: User test_free_8715 -> Found: true, Tier: free, LastDate: 2025-11-28, DailyOne: 1
+No reset needed. Date matches: 2025-11-28
+Limit Check Start: User test_free_8715, Spread three
+Limit Check: User test_free_8715 -> Found: true, Tier: free, LastDate: 2025-11-28, DailyOne: 1
+No reset needed. Date matches: 2025-11-28
+DEBUG: Incrementing counter for UserID: 8 (Spread: three)
+DEBUG: Increment Result (Three): {"stmt":{},"lastID":125,"changes":1}
+Limit Check Start: User test_free_8715, Spread three
+Limit Check: User test_free_8715 -> Found: true, Tier: free, LastDate: 2025-11-28, DailyOne: 1
+No reset needed. Date matches: 2025-11-28
+DEBUG: Incrementing counter for UserID: 8 (Spread: three)
+DEBUG: Increment Result (Three): {"stmt":{},"lastID":126,"changes":1}
+Limit Check Start: User test_basic_8715, Spread day
+Limit Check: User test_basic_8715 -> Found: true, Tier: basic, LastDate: null, DailyOne: 0
+Resetting counters for test_basic_8715. Old Date: null, New: 2025-11-28
+DEBUG: Incrementing counter for UserID: 9 (Spread: day)
+Limit Check Start: User test_basic_8715, Spread day
+Limit Check: User test_basic_8715 -> Found: true, Tier: basic, LastDate: 2025-11-28, DailyOne: 0
+No reset needed. Date matches: 2025-11-28
+DEBUG: Incrementing counter for UserID: 9 (Spread: day)
+Limit Check Start: User test_basic_8715, Spread one
+Limit Check: User test_basic_8715 -> Found: true, Tier: basic, LastDate: 2025-11-28, DailyOne: 0
+No reset needed. Date matches: 2025-11-28
+DEBUG: Incrementing counter for UserID: 9 (Spread: one)
+DEBUG: Increment Result (One): {"stmt":{},"lastID":129,"changes":1}
+DEBUG: New Count for User 9: 1
+Limit Check Start: User test_basic_8715, Spread one
+Limit Check: User test_basic_8715 -> Found: true, Tier: basic, LastDate: 2025-11-28, DailyOne: 1
+No reset needed. Date matches: 2025-11-28
+DEBUG: Incrementing counter for UserID: 9 (Spread: one)
+DEBUG: Increment Result (One): {"stmt":{},"lastID":130,"changes":1}
+DEBUG: New Count for User 9: 2
+Limit Check Start: User test_basic_8715, Spread one
+Limit Check: User test_basic_8715 -> Found: true, Tier: basic, LastDate: 2025-11-28, DailyOne: 2
+No reset needed. Date matches: 2025-11-28
+Limit Check Start: User test_basic_8715, Spread three
+Limit Check: User test_basic_8715 -> Found: true, Tier: basic, LastDate: 2025-11-28, DailyOne: 2
+No reset needed. Date matches: 2025-11-28
+DEBUG: Incrementing counter for UserID: 9 (Spread: three)
+DEBUG: Increment Result (Three): {"stmt":{},"lastID":131,"changes":1}
+Limit Check Start: User test_basic_8715, Spread three
+Limit Check: User test_basic_8715 -> Found: true, Tier: basic, LastDate: 2025-11-28, DailyOne: 2
+No reset needed. Date matches: 2025-11-28
+Limit Check Start: User test_free_6000, Spread day
+Limit Check: User test_free_6000 -> Found: true, Tier: free, LastDate: null, DailyOne: 0
+Resetting counters for test_free_6000. Old Date: null, New: 2025-11-28
+DEBUG: Incrementing counter for UserID: 10 (Spread: day)
+Limit Check Start: User test_free_6000, Spread day
+Limit Check: User test_free_6000 -> Found: true, Tier: free, LastDate: 2025-11-28, DailyOne: 0
+No reset needed. Date matches: 2025-11-28
+DEBUG: Incrementing counter for UserID: 10 (Spread: day)
+Limit Check Start: User test_free_6000, Spread one
+Limit Check: User test_free_6000 -> Found: true, Tier: free, LastDate: 2025-11-28, DailyOne: 0
+No reset needed. Date matches: 2025-11-28
+DEBUG: Incrementing counter for UserID: 10 (Spread: one)
+DEBUG: Increment Result (One): {"stmt":{},"lastID":134,"changes":1}
+DEBUG: New Count for User 10: 1
+Limit Check Start: User test_free_6000, Spread one
+Limit Check: User test_free_6000 -> Found: true, Tier: free, LastDate: 2025-11-28, DailyOne: 1
+No reset needed. Date matches: 2025-11-28
+Limit Check Start: User test_free_6000, Spread three
+Limit Check: User test_free_6000 -> Found: true, Tier: free, LastDate: 2025-11-28, DailyOne: 1
+No reset needed. Date matches: 2025-11-28
+DEBUG: Incrementing counter for UserID: 10 (Spread: three)
+DEBUG: Increment Result (Three): {"stmt":{},"lastID":135,"changes":1}
+Limit Check Start: User test_free_6000, Spread three
+Limit Check: User test_free_6000 -> Found: true, Tier: free, LastDate: 2025-11-28, DailyOne: 1
+No reset needed. Date matches: 2025-11-28
+DEBUG: Incrementing counter for UserID: 10 (Spread: three)
+DEBUG: Increment Result (Three): {"stmt":{},"lastID":136,"changes":1}
+Limit Check Start: User test_basic_6000, Spread day
+Limit Check: User test_basic_6000 -> Found: true, Tier: basic, LastDate: null, DailyOne: 0
+Resetting counters for test_basic_6000. Old Date: null, New: 2025-11-28
+DEBUG: Incrementing counter for UserID: 11 (Spread: day)
+Limit Check Start: User test_basic_6000, Spread day
+Limit Check: User test_basic_6000 -> Found: true, Tier: basic, LastDate: 2025-11-28, DailyOne: 0
+No reset needed. Date matches: 2025-11-28
+DEBUG: Incrementing counter for UserID: 11 (Spread: day)
+Limit Check Start: User test_basic_6000, Spread one
+Limit Check: User test_basic_6000 -> Found: true, Tier: basic, LastDate: 2025-11-28, DailyOne: 0
+No reset needed. Date matches: 2025-11-28
+DEBUG: Incrementing counter for UserID: 11 (Spread: one)
+DEBUG: Increment Result (One): {"stmt":{},"lastID":139,"changes":1}
+DEBUG: New Count for User 11: 1
+Limit Check Start: User test_basic_6000, Spread one
+Limit Check: User test_basic_6000 -> Found: true, Tier: basic, LastDate: 2025-11-28, DailyOne: 1
+No reset needed. Date matches: 2025-11-28
+DEBUG: Incrementing counter for UserID: 11 (Spread: one)
+DEBUG: Increment Result (One): {"stmt":{},"lastID":140,"changes":1}
+DEBUG: New Count for User 11: 2
+Limit Check Start: User test_basic_6000, Spread one
+Limit Check: User test_basic_6000 -> Found: true, Tier: basic, LastDate: 2025-11-28, DailyOne: 2
+No reset needed. Date matches: 2025-11-28
+Limit Check Start: User test_basic_6000, Spread three
+Limit Check: User test_basic_6000 -> Found: true, Tier: basic, LastDate: 2025-11-28, DailyOne: 2
+No reset needed. Date matches: 2025-11-28
+DEBUG: Incrementing counter for UserID: 11 (Spread: three)
+DEBUG: Increment Result (Three): {"stmt":{},"lastID":141,"changes":1}
+Limit Check Start: User test_basic_6000, Spread three
+Limit Check: User test_basic_6000 -> Found: true, Tier: basic, LastDate: 2025-11-28, DailyOne: 2
+No reset needed. Date matches: 2025-11-28
+Limit Check Start: User test_free_1110, Spread day
+Limit Check: User test_free_1110 -> Found: true, Tier: free, LastDate: null, DailyOne: 0
+Resetting counters for test_free_1110. Old Date: null, New: 2025-11-28
+DEBUG: Incrementing counter for UserID: 12 (Spread: day)
+Limit Check Start: User test_free_1110, Spread day
+Limit Check: User test_free_1110 -> Found: true, Tier: free, LastDate: 2025-11-28, DailyOne: 0
+No reset needed. Date matches: 2025-11-28
+DEBUG: Incrementing counter for UserID: 12 (Spread: day)
+Limit Check Start: User test_free_1110, Spread one
+Limit Check: User test_free_1110 -> Found: true, Tier: free, LastDate: 2025-11-28, DailyOne: 0
+No reset needed. Date matches: 2025-11-28
+DEBUG: Incrementing counter for UserID: 12 (Spread: one)
+DEBUG: Increment Result (One): {"stmt":{},"lastID":144,"changes":1}
+DEBUG: New Count for User 12: 1
+Limit Check Start: User test_free_1110, Spread one
+Limit Check: User test_free_1110 -> Found: true, Tier: free, LastDate: 2025-11-28, DailyOne: 1
+No reset needed. Date matches: 2025-11-28
+Limit Check Start: User test_free_1110, Spread three
+Limit Check: User test_free_1110 -> Found: true, Tier: free, LastDate: 2025-11-28, DailyOne: 1
+No reset needed. Date matches: 2025-11-28
+DEBUG: Incrementing counter for UserID: 12 (Spread: three)
+DEBUG: Increment Result (Three): {"stmt":{},"lastID":145,"changes":1}
+Limit Check Start: User test_free_1110, Spread three
+Limit Check: User test_free_1110 -> Found: true, Tier: free, LastDate: 2025-11-28, DailyOne: 1
+No reset needed. Date matches: 2025-11-28
+DEBUG: Incrementing counter for UserID: 12 (Spread: three)
+DEBUG: Increment Result (Three): {"stmt":{},"lastID":146,"changes":1}
+Limit Check Start: User test_basic_1110, Spread day
+Limit Check: User test_basic_1110 -> Found: true, Tier: basic, LastDate: null, DailyOne: 0
+Resetting counters for test_basic_1110. Old Date: null, New: 2025-11-28
+DEBUG: Incrementing counter for UserID: 13 (Spread: day)
+Limit Check Start: User test_basic_1110, Spread day
+Limit Check: User test_basic_1110 -> Found: true, Tier: basic, LastDate: 2025-11-28, DailyOne: 0
+No reset needed. Date matches: 2025-11-28
+DEBUG: Incrementing counter for UserID: 13 (Spread: day)
+Limit Check Start: User test_basic_1110, Spread one
+Limit Check: User test_basic_1110 -> Found: true, Tier: basic, LastDate: 2025-11-28, DailyOne: 0
+No reset needed. Date matches: 2025-11-28
+DEBUG: Incrementing counter for UserID: 13 (Spread: one)
+DEBUG: Increment Result (One): {"stmt":{},"lastID":149,"changes":1}
+DEBUG: New Count for User 13: 1
+Limit Check Start: User test_basic_1110, Spread one
+Limit Check: User test_basic_1110 -> Found: true, Tier: basic, LastDate: 2025-11-28, DailyOne: 1
+No reset needed. Date matches: 2025-11-28
+DEBUG: Incrementing counter for UserID: 13 (Spread: one)
+DEBUG: Increment Result (One): {"stmt":{},"lastID":150,"changes":1}
+DEBUG: New Count for User 13: 2
+Limit Check Start: User test_basic_1110, Spread one
+Limit Check: User test_basic_1110 -> Found: true, Tier: basic, LastDate: 2025-11-28, DailyOne: 2
+No reset needed. Date matches: 2025-11-28
+Limit Check Start: User test_basic_1110, Spread three
+Limit Check: User test_basic_1110 -> Found: true, Tier: basic, LastDate: 2025-11-28, DailyOne: 2
+No reset needed. Date matches: 2025-11-28
+DEBUG: Incrementing counter for UserID: 13 (Spread: three)
+DEBUG: Increment Result (Three): {"stmt":{},"lastID":151,"changes":1}
+Limit Check Start: User test_basic_1110, Spread three
+Limit Check: User test_basic_1110 -> Found: true, Tier: basic, LastDate: 2025-11-28, DailyOne: 2
+No reset needed. Date matches: 2025-11-28
+Limit Check Start: User test_free_4512, Spread day, Lang ru
+Limit Check: User test_free_4512 -> Found: true, Tier: free, LastDate: null, DailyOne: 0
+Resetting counters for test_free_4512. Old Date: null, New: 2025-11-28
+DEBUG: Reading Handler Start. req.user: {"id":14,"telegram_id":"test_free_4512","username":"User","first_name":"User","subscription_tier":"free","created_at":"2025-11-28 12:41:46","language_code":"en","notifications_enabled":0,"receive_daily_reading":0,"notification_time":"09:00","daily_one_card_count":0,"daily_three_card_count":0,"last_reading_date":null}
+DEBUG: Inserting reading for user: {"id":14,"telegram_id":"test_free_4512","username":"User","first_name":"User","subscription_tier":"free","created_at":"2025-11-28 12:41:46","language_code":"en","notifications_enabled":0,"receive_daily_reading":0,"notification_time":"09:00","daily_one_card_count":0,"daily_three_card_count":0,"last_reading_date":null}
+DEBUG: req.user.id type: number
+DEBUG: Incrementing counter for UserID: 14 (Spread: day)
+Limit Check Start: User test_free_4512, Spread day, Lang ru
+Limit Check: User test_free_4512 -> Found: true, Tier: free, LastDate: 2025-11-28, DailyOne: 0
+No reset needed. Date matches: 2025-11-28
+Limit Check Start: User test_free_4512, Spread one, Lang ru
+Limit Check: User test_free_4512 -> Found: true, Tier: free, LastDate: 2025-11-28, DailyOne: 0
+No reset needed. Date matches: 2025-11-28
+DEBUG: Reading Handler Start. req.user: {"id":14,"telegram_id":"test_free_4512","username":"User","first_name":"User","subscription_tier":"free","created_at":"2025-11-28 12:41:46","language_code":"en","notifications_enabled":0,"receive_daily_reading":0,"notification_time":"09:00","daily_one_card_count":0,"daily_three_card_count":0,"last_reading_date":"2025-11-28"}
+DEBUG: Inserting reading for user: {"id":14,"telegram_id":"test_free_4512","username":"User","first_name":"User","subscription_tier":"free","created_at":"2025-11-28 12:41:46","language_code":"en","notifications_enabled":0,"receive_daily_reading":0,"notification_time":"09:00","daily_one_card_count":0,"daily_three_card_count":0,"last_reading_date":"2025-11-28"}
+DEBUG: req.user.id type: number
+DEBUG: Incrementing counter for UserID: 14 (Spread: one)
+DEBUG: Increment Result (One): {"stmt":{},"lastID":153,"changes":1}
+DEBUG: New Count for User 14: 1
+Limit Check Start: User test_free_4512, Spread one, Lang ru
+Limit Check: User test_free_4512 -> Found: true, Tier: free, LastDate: 2025-11-28, DailyOne: 1
+No reset needed. Date matches: 2025-11-28
+Limit Check Start: User test_free_4512, Spread three, Lang ru
+Limit Check: User test_free_4512 -> Found: true, Tier: free, LastDate: 2025-11-28, DailyOne: 1
+No reset needed. Date matches: 2025-11-28
+DEBUG: Reading Handler Start. req.user: {"id":14,"telegram_id":"test_free_4512","username":"User","first_name":"User","subscription_tier":"free","created_at":"2025-11-28 12:41:46","language_code":"en","notifications_enabled":0,"receive_daily_reading":0,"notification_time":"09:00","daily_one_card_count":1,"daily_three_card_count":0,"last_reading_date":"2025-11-28"}
+DEBUG: Inserting reading for user: {"id":14,"telegram_id":"test_free_4512","username":"User","first_name":"User","subscription_tier":"free","created_at":"2025-11-28 12:41:46","language_code":"en","notifications_enabled":0,"receive_daily_reading":0,"notification_time":"09:00","daily_one_card_count":1,"daily_three_card_count":0,"last_reading_date":"2025-11-28"}
+DEBUG: req.user.id type: number
+DEBUG: Incrementing counter for UserID: 14 (Spread: three)
+DEBUG: Increment Result (Three): {"stmt":{},"lastID":154,"changes":1}
+Limit Check Start: User test_free_4512, Spread three, Lang ru
+Limit Check: User test_free_4512 -> Found: true, Tier: free, LastDate: 2025-11-28, DailyOne: 1
+No reset needed. Date matches: 2025-11-28
+Limit Check Start: User test_basic_4512, Spread day, Lang en
+Limit Check: User test_basic_4512 -> Found: true, Tier: basic, LastDate: null, DailyOne: 0
+Resetting counters for test_basic_4512. Old Date: null, New: 2025-11-28
+DEBUG: Reading Handler Start. req.user: {"id":15,"telegram_id":"test_basic_4512","username":"User","first_name":"User","subscription_tier":"basic","created_at":"2025-11-28 12:42:03","language_code":"en","notifications_enabled":0,"receive_daily_reading":0,"notification_time":"09:00","daily_one_card_count":0,"daily_three_card_count":0,"last_reading_date":null}
+DEBUG: Inserting reading for user: {"id":15,"telegram_id":"test_basic_4512","username":"User","first_name":"User","subscription_tier":"basic","created_at":"2025-11-28 12:42:03","language_code":"en","notifications_enabled":0,"receive_daily_reading":0,"notification_time":"09:00","daily_one_card_count":0,"daily_three_card_count":0,"last_reading_date":null}
+DEBUG: req.user.id type: number
+DEBUG: Incrementing counter for UserID: 15 (Spread: day)
+Limit Check Start: User test_basic_4512, Spread day, Lang en
+Limit Check: User test_basic_4512 -> Found: true, Tier: basic, LastDate: 2025-11-28, DailyOne: 0
+No reset needed. Date matches: 2025-11-28
+Limit Check Start: User test_basic_4512, Spread one, Lang en
+Limit Check: User test_basic_4512 -> Found: true, Tier: basic, LastDate: 2025-11-28, DailyOne: 0
+No reset needed. Date matches: 2025-11-28
+DEBUG: Reading Handler Start. req.user: {"id":15,"telegram_id":"test_basic_4512","username":"User","first_name":"User","subscription_tier":"basic","created_at":"2025-11-28 12:42:03","language_code":"en","notifications_enabled":0,"receive_daily_reading":0,"notification_time":"09:00","daily_one_card_count":0,"daily_three_card_count":0,"last_reading_date":"2025-11-28"}
+DEBUG: Inserting reading for user: {"id":15,"telegram_id":"test_basic_4512","username":"User","first_name":"User","subscription_tier":"basic","created_at":"2025-11-28 12:42:03","language_code":"en","notifications_enabled":0,"receive_daily_reading":0,"notification_time":"09:00","daily_one_card_count":0,"daily_three_card_count":0,"last_reading_date":"2025-11-28"}
+DEBUG: req.user.id type: number
+DEBUG: Incrementing counter for UserID: 15 (Spread: one)
+DEBUG: Increment Result (One): {"stmt":{},"lastID":156,"changes":1}
+DEBUG: New Count for User 15: 1
+Limit Check Start: User test_basic_4512, Spread one, Lang en
+Limit Check: User test_basic_4512 -> Found: true, Tier: basic, LastDate: 2025-11-28, DailyOne: 1
+No reset needed. Date matches: 2025-11-28
+DEBUG: Reading Handler Start. req.user: {"id":15,"telegram_id":"test_basic_4512","username":"User","first_name":"User","subscription_tier":"basic","created_at":"2025-11-28 12:42:03","language_code":"en","notifications_enabled":0,"receive_daily_reading":0,"notification_time":"09:00","daily_one_card_count":1,"daily_three_card_count":0,"last_reading_date":"2025-11-28"}
+DEBUG: Inserting reading for user: {"id":15,"telegram_id":"test_basic_4512","username":"User","first_name":"User","subscription_tier":"basic","created_at":"2025-11-28 12:42:03","language_code":"en","notifications_enabled":0,"receive_daily_reading":0,"notification_time":"09:00","daily_one_card_count":1,"daily_three_card_count":0,"last_reading_date":"2025-11-28"}
+DEBUG: req.user.id type: number
+DEBUG: Incrementing counter for UserID: 15 (Spread: one)
+DEBUG: Increment Result (One): {"stmt":{},"lastID":157,"changes":1}
+DEBUG: New Count for User 15: 2
+Limit Check Start: User test_basic_4512, Spread one, Lang en
+Limit Check: User test_basic_4512 -> Found: true, Tier: basic, LastDate: 2025-11-28, DailyOne: 2
+No reset needed. Date matches: 2025-11-28
+Limit Check Start: User test_basic_4512, Spread three, Lang en
+Limit Check: User test_basic_4512 -> Found: true, Tier: basic, LastDate: 2025-11-28, DailyOne: 2
+No reset needed. Date matches: 2025-11-28
+DEBUG: Reading Handler Start. req.user: {"id":15,"telegram_id":"test_basic_4512","username":"User","first_name":"User","subscription_tier":"basic","created_at":"2025-11-28 12:42:03","language_code":"en","notifications_enabled":0,"receive_daily_reading":0,"notification_time":"09:00","daily_one_card_count":2,"daily_three_card_count":0,"last_reading_date":"2025-11-28"}
+DEBUG: Inserting reading for user: {"id":15,"telegram_id":"test_basic_4512","username":"User","first_name":"User","subscription_tier":"basic","created_at":"2025-11-28 12:42:03","language_code":"en","notifications_enabled":0,"receive_daily_reading":0,"notification_time":"09:00","daily_one_card_count":2,"daily_three_card_count":0,"last_reading_date":"2025-11-28"}
+DEBUG: req.user.id type: number
+DEBUG: Incrementing counter for UserID: 15 (Spread: three)
+DEBUG: Increment Result (Three): {"stmt":{},"lastID":158,"changes":1}
+Limit Check Start: User test_basic_4512, Spread three, Lang en
+Limit Check: User test_basic_4512 -> Found: true, Tier: basic, LastDate: 2025-11-28, DailyOne: 2
+No reset needed. Date matches: 2025-11-28

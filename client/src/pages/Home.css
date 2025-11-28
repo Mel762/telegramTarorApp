@@ -1,0 +1,79 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    /* Overlay for readability */
+}
+
+.home__header h1 {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: var(--secondary-color);
+    text-shadow: 0 0 10px var(--primary-color);
+    animation: glow 2s infinite alternate;
+}
+
+.home__header p {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin-bottom: 40px;
+    opacity: 0.8;
+}
+
+.home__menu {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 15px 20px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 30px;
+    background: rgba(26, 11, 46, 0.8);
+    color: var(--text-color);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px var(--primary-color);
+    border-color: var(--text-color);
+    background: rgba(107, 44, 145, 0.4);
+}
+
+.btn--profile {
+    margin-top: 10px;
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.btn__icon {
+    font-size: 1.5rem;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px var(--primary-color);
+    }
+
+    to {
+        text-shadow: 0 0 20px var(--secondary-color), 0 0 30px var(--primary-color);
+    }
+}

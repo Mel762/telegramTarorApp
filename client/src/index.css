@@ -1,0 +1,59 @@
+:root {
+  /* Colors */
+  --color-bg: #0f0f13;
+  --color-surface: #1a1a24;
+  --color-primary: #9d4edd;
+  --color-secondary: #c77dff;
+  --color-accent: #e0aaff;
+  --color-text: #ffffff;
+  --color-text-muted: #a0a0a0;
+  --color-border: #2a2a35;
+
+  /* Spacing */
+  --primary-color: #6b2c91;
+  /* Deep Purple */
+  --secondary-color: #c0c0c0;
+  /* Silver */
+  --accent-color: #ffd700;
+  /* Gold (kept for highlights) */
+  --bg-color: #1a0b2e;
+  /* Dark Violet */
+  --text-color: #e0e0e0;
+  /* Starlight White */
+  --card-bg: rgba(30, 15, 50, 0.8);
+  --font-main: 'Inter', sans-serif;
+  --font-serif: 'Cinzel', serif;
+  /* Add a mystical font if possible, or fallback */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+  background-color: var(--bg-color);
+  background-image: url('/main-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-family: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

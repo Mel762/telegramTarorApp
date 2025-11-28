@@ -1,0 +1,67 @@
+.tarot-card {
+    width: 120px;
+    height: 200px;
+    perspective: 1000px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.tarot-card:hover {
+    transform: translateY(-10px);
+}
+
+.tarot-card__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.tarot-card.revealed .tarot-card__inner {
+    transform: rotateY(180deg);
+}
+
+.tarot-card__front,
+.tarot-card__back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.tarot-card__back {
+    background-image: url('/card-back.png');
+    background-size: cover;
+    background-position: center;
+    border: 2px solid var(--secondary-color);
+}
+
+.tarot-card__front {
+    background-color: #fff;
+    color: black;
+    transform: rotateY(180deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--secondary-color);
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.card-placeholder {
+    padding: 10px;
+    font-family: var(--font-serif);
+    font-weight: bold;
+    color: var(--primary-color);
+}
