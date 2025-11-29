@@ -6,74 +6,137 @@
     min-height: 100vh;
     text-align: center;
     padding: 20px;
-    background: rgba(0, 0, 0, 0.3);
-    /* Overlay for readability */
+    /* Spotlight Effect: Light purple center, fading to dark overlay at edges */
+    /* This overlays the body background image */
+    background: radial-gradient(circle at center, rgba(157, 78, 221, 0.2) 0%, rgba(0, 0, 0, 0.6) 100%);
 }
 
+/* HEADER */
 .home__header h1 {
     font-family: var(--font-serif);
-    font-size: 3rem;
+    font-size: 28px;
     margin-bottom: 10px;
-    color: var(--secondary-color);
-    text-shadow: 0 0 10px var(--primary-color);
-    animation: glow 2s infinite alternate;
+    color: #FFFFFF;
+    opacity: 0.9;
+    text-shadow: none;
+    font-weight: 400;
 }
 
 .home__header p {
-    font-size: 1.2rem;
-    color: var(--text-color);
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
     margin-bottom: 40px;
-    opacity: 0.8;
+    font-family: var(--font-main);
 }
 
+/* MENU CONTAINER */
 .home__menu {
     display: flex;
     flex-direction: column;
-    gap: 20px;
     width: 100%;
-    max-width: 300px;
+    max-width: 400px;
+    padding: 0 10px;
 }
 
+/* BUTTONS (General) */
 .btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    height: 56px;
+    /* Reduced height */
+    margin-bottom: 12px;
+    /* Reduced margin */
+    padding: 0 24px;
+
+    /* Lighter Glass Effect */
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    /* Stricter squircle */
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* LEFT SIDE TEXT */
+.btn__text {
+    font-size: 16px;
+    font-weight: 500;
+    /* Medium */
+    color: #FFFFFF;
+    text-align: left;
+    font-family: var(--font-main);
+    letter-spacing: 0.5px;
+}
+
+/* PRICE BADGE (Right Side) */
+.price-badge {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
-    padding: 15px 20px;
-    border: 1px solid var(--secondary-color);
-    border-radius: 30px;
-    background: rgba(26, 11, 46, 0.8);
-    color: var(--text-color);
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+
+    /* Noble Gold Gradient */
+    background: linear-gradient(90deg, #D4AF37, #C5A028);
+    color: #000000;
+    /* Black text */
+
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    /* Thinner pill */
+    border-radius: 50px;
+
+    min-width: 50px;
 }
 
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 20px var(--primary-color);
-    border-color: var(--text-color);
-    background: rgba(107, 44, 145, 0.4);
+/* Remove old styles */
+.price-badge.free,
+.price-badge.star {
+    border: none;
+    box-shadow: none;
 }
 
+.price-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.price-stars {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.price-usd {
+    display: none;
+}
+
+/* PROFILE BUTTON (Distinct) */
 .btn--profile {
-    margin-top: 10px;
-    border-color: rgba(255, 255, 255, 0.3);
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn--profile .btn__text {
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+}
+
+/* HOVER STATES */
+.btn:active {
+    transform: scale(0.98);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.btn--profile:active {
     background: rgba(255, 255, 255, 0.05);
-}
-
-.btn__icon {
-    font-size: 1.5rem;
-}
-
-@keyframes glow {
-    from {
-        text-shadow: 0 0 10px var(--primary-color);
-    }
-
-    to {
-        text-shadow: 0 0 20px var(--secondary-color), 0 0 30px var(--primary-color);
-    }
 }

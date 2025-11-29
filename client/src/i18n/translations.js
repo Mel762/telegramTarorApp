@@ -20,14 +20,6 @@ export const translations = {
         error: "The spirits are silent. Please try again.",
         // Profile & Settings
         profile: "Profile",
-        subscriptionTiers: "Subscription Tiers",
-        novice: "Novice",
-        adept: "Adept",
-        oracle: "Oracle",
-        free: "Free",
-        currentPlan: "Current Plan",
-        upgrade: "Upgrade",
-        downgrade: "Downgrade",
         settings: "Settings",
         notifications: "Notifications",
         enableNotifications: "Enable daily reminders",
@@ -36,19 +28,15 @@ export const translations = {
         deliveryTime: "Delivery Time",
         sendTime: "When to send",
         backHome: "← Back to Home",
-        // Features
-        // Features
-        featCardOfDay: "Card of the Day",
-        featOneCardFree: "1-Card Reading (1/day)",
-        featOneCardBasic: "1-Card Reading (2/day)",
-        featOneCardPro: "1-Card Reading (3/day)",
-        featThreeCardFree: "3-Card Spread (No)",
-        featThreeCardBasic: "3-Card Spread (1/day)",
-        featThreeCardPro: "3-Card Spread (3/day)",
-        featChatFree: "Chat Questions (3/reading)",
-        featChatBasic: "Chat Questions (10/reading)",
-        featChatPro: "Chat Questions (20/reading)",
-        featNotifications: "Personal Notifications"
+        greetings: [
+            "What worries you, {name}?",
+            "{name}, ask your question",
+            "The cards await you, {name}.",
+            "{name}, discover what is hidden",
+            "Discover your destiny, {name}.",
+            "The universe is listening, {name}.",
+            "The answer is near, {name}."
+        ]
     },
     ru: {
         welcome: "Твой таролог приветствует тебя",
@@ -71,14 +59,6 @@ export const translations = {
         error: "Духи молчат. Попробуйте позже.",
         // Profile & Settings
         profile: "Профиль",
-        subscriptionTiers: "Уровни подписки",
-        novice: "Новичок",
-        adept: "Адепт",
-        oracle: "Оракул",
-        free: "Бесплатно",
-        currentPlan: "Текущий план",
-        upgrade: "Улучшить",
-        downgrade: "Понизить",
         settings: "Настройки",
         notifications: "Уведомления",
         enableNotifications: "Включить ежедневные напоминания",
@@ -87,18 +67,15 @@ export const translations = {
         deliveryTime: "Время доставки",
         sendTime: "Когда присылать",
         backHome: "← На главную",
-        // Features
-        featCardOfDay: "Карта дня",
-        featOneCardFree: "1 карта (1/день)",
-        featOneCardBasic: "1 карта (2/день)",
-        featOneCardPro: "1 карта (3/день)",
-        featThreeCardFree: "3 карты (Нет)",
-        featThreeCardBasic: "3 карты (1/день)",
-        featThreeCardPro: "3 карты (3/день)",
-        featChatFree: "Вопросы в чате (3/расклад)",
-        featChatBasic: "Вопросы в чате (10/расклад)",
-        featChatPro: "Вопросы в чате (20/расклад)",
-        featNotifications: "Личные уведомления"
+        greetings: [
+            "Что тебя беспокоит, {name}?",
+            "{name}, задай свой вопрос",
+            "Карты ждут тебя, {name}.",
+            "{name}, узнай что скрыто",
+            "Узнай свою судьбу, {name}.",
+            "Вселенная слушает, {name}.",
+            "Ответ уже рядом, {name}."
+        ]
     },
     uk: {
         welcome: "Твій таролог вітає тебе",
@@ -112,7 +89,7 @@ export const translations = {
         cardOfDay: "Карта дня",
         oneCard: "Розклад 1 карта",
         threeCard: "Розклад 3 карты",
-        celticCross: "Кельтський хрест",
+        celticCross: "Кельтский хрест",
         loveReading: "Розклад на кохання",
         careerReading: "Розклад на кар'єру",
         yesNo: "Так / Ні",
@@ -121,14 +98,6 @@ export const translations = {
         error: "Духи мовчать. Спробуйте пізніше.",
         // Profile & Settings
         profile: "Профіль",
-        subscriptionTiers: "Рівні підписки",
-        novice: "Новачок",
-        adept: "Адепт",
-        oracle: "Оракул",
-        free: "Безкоштовно",
-        currentPlan: "Поточний план",
-        upgrade: "Покращити",
-        downgrade: "Понизити",
         settings: "Налаштування",
         notifications: "Сповіщення",
         enableNotifications: "Увімкнути щоденні нагадування",
@@ -137,17 +106,14 @@ export const translations = {
         deliveryTime: "Час доставки",
         sendTime: "Коли надсилати",
         backHome: "← На головну",
-        // Features
-        featCardOfDay: "Карта дня",
-        featOneCardFree: "1 карта (1/день)",
-        featOneCardBasic: "1 карта (2/день)",
-        featOneCardPro: "1 карта (3/день)",
-        featThreeCardFree: "3 карти (Ні)",
-        featThreeCardBasic: "3 карти (1/день)",
-        featThreeCardPro: "3 карти (3/день)",
-        featChatFree: "Питання в чаті (3/розклад)",
-        featChatBasic: "Питання в чаті (10/розклад)",
-        featChatPro: "Питання в чаті (20/розклад)",
-        featNotifications: "Особисті сповіщення"
+        greetings: [
+            "Що тебе турбує, {name}?",
+            "{name}, задай своє питання",
+            "Карти чекають на тебе, {name}.",
+            "{name}, дізнайся, що приховано",
+            "Дізнайся свою долю, {name}.",
+            "Всесвіт слухає, {name}.",
+            "Відповідь вже поруч, {name}."
+        ]
     }
 };

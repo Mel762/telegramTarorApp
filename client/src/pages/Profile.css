@@ -43,132 +43,8 @@
     margin-top: 5px;
     text-transform: uppercase;
     letter-spacing: 1px;
-}
-
-.tier-badge.free {
     background: #4a4a4a;
     color: #ccc;
-}
-
-.tier-badge.basic {
-    background: linear-gradient(45deg, #2c3e50, #bdc3c7);
-    color: white;
-    box-shadow: 0 0 10px rgba(189, 195, 199, 0.5);
-}
-
-.tier-badge.max {
-    background: linear-gradient(45deg, #f1c40f, #e67e22);
-    color: black;
-    font-weight: bold;
-    box-shadow: 0 0 15px rgba(241, 196, 15, 0.6);
-}
-
-/* Subscription Carousel */
-.subscription-section {
-    margin-bottom: 30px;
-}
-
-.subscription-section h3 {
-    margin-bottom: 15px;
-    font-family: var(--font-serif);
-    color: var(--secondary-color);
-}
-
-.tiers-container {
-    display: flex;
-    gap: 15px;
-    overflow-x: auto;
-    padding-bottom: 10px;
-    scrollbar-width: none;
-    /* Firefox */
-}
-
-.tiers-container::-webkit-scrollbar {
-    display: none;
-    /* Chrome/Safari */
-}
-
-.tier-card {
-    min-width: 200px;
-    background: rgba(0, 0, 0, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    transition: all 0.3s ease;
-}
-
-.tier-card.active {
-    border-color: var(--secondary-color);
-    background: rgba(26, 11, 46, 0.9);
-}
-
-.tier-card.basic-tier {
-    border-top: 3px solid #bdc3c7;
-}
-
-.tier-card.max-tier {
-    border-top: 3px solid #f1c40f;
-}
-
-.tier-card h4 {
-    margin: 0 0 10px 0;
-    font-size: 1.2rem;
-}
-
-.tier-price {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: var(--secondary-color);
-}
-
-.tier-features {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 20px 0;
-    flex-grow: 1;
-}
-
-.tier-features li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 8px;
-    font-size: 0.9rem;
-    opacity: 0.9;
-}
-
-.feature-icon {
-    font-size: 1rem;
-}
-
-.upgrade-btn {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: all 0.2s;
-}
-
-.upgrade-btn.current {
-    background: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.5);
-    cursor: default;
-}
-
-.upgrade-btn.unlock {
-    background: var(--primary-color);
-    color: white;
-}
-
-.upgrade-btn.unlock:hover {
-    background: var(--primary-hover);
-    box-shadow: 0 0 15px var(--primary-glow);
 }
 
 /* Settings */
@@ -194,6 +70,29 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    gap: 15px;
+    /* Add gap between text and switch */
+}
+
+.setting-label {
+    flex: 1;
+    /* Allow text to take available space */
+    min-width: 0;
+    /* Prevent flex item from overflowing */
+}
+
+.setting-label h4 {
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+}
+
+.setting-label p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.3;
 }
 
 .setting-extra {
@@ -213,21 +112,6 @@
 
 .setting-item:last-child {
     margin-bottom: 0;
-}
-
-.setting-label h4 {
-    margin: 0 0 5px 0;
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: white;
-}
-
-.setting-label p {
-    margin: 0;
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.6);
-    max-width: 250px;
-    line-height: 1.3;
 }
 
 /* Toggle Switch */

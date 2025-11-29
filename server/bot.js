@@ -21,4 +21,39 @@ bot.start(async (ctx) => {
     });
 });
 
+// Payment Handlers
+bot.on('pre_checkout_query', (ctx) => {
+    ctx.answerPreCheckoutQuery(true).catch(err => {
+        console.error('Pre-checkout error:', err);
+    });
+});
+
+bot.on('successful_payment', async (ctx) => {
+    try {
+        const { total_amount, invoice_payload, currency } = ctx.message.successful_payment;
+        const userId = ctx.from.id;
+
+        // Payload: { spreadType: 'one'|'three', userId: 123 }
+        let payload = {};
+        try {
+            payload = JSON.parse(invoice_payload);
+        } catch (e) {
+            console.error('Failed to parse invoice payload:', invoice_payload);
+            return;
+        }
+
+        const spreadType = payload.spreadType;
+        console.log(`Payment successful for User ${userId}. Spread: ${spreadType}, Amount: ${total_amount} ${currency}`);
+
+        // We don't need to update DB for "subscription" anymore.
+        // We could log this payment to a 'payments' table if we had one, but for now just logging to console is enough.
+        // The frontend will proceed to request the reading upon receiving 'paid' status.
+
+        // Notify user
+        ctx.reply(`Payment received! ✨ You can now proceed with your reading.`);
+    } catch (error) {
+        console.error('Payment processing error:', error);
+    }
+});
+
 module.exports = bot;

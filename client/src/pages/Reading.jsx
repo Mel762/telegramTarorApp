@@ -83,7 +83,56 @@ const Reading = ({ user, t, lang }) => {
         }
     };
 
-    const handleCardSelect = async () => {
+    const [isPaid, setIsPaid] = useState(spreadType === 'day'); // Day is free
+
+    const handlePayment = async () => {
+        if (!user?.id) return;
+        setLoading(true);
+        try {
+            const res = await fetch('/api/create-stars-invoice', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userId: user.id, spreadType }) // Use user.id (telegram_id)
+            });
+            const data = await res.json();
+
+            if (data.error) {
+                console.error('Invoice error:', data.error);
+                alert(t('error'));
+                setLoading(false);
+                return;
+            }
+
+            if (window.Telegram?.WebApp?.openInvoice) {
+                window.Telegram.WebApp.openInvoice(data.invoiceLink, (status) => {
+                    if (status === 'paid') {
+                        setIsPaid(true);
+                        // Optional: Auto-trigger selection or let user click again
+                        // handleCardSelect(true); 
+                    } else {
+                        setLoading(false);
+                    }
+                });
+            } else {
+                // Fallback for dev
+                console.log('Dev Mode: Payment Link', data.invoiceLink);
+                window.open(data.invoiceLink, '_blank');
+                // Simulate payment for dev
+                // setIsPaid(true); 
+                setLoading(false);
+            }
+        } catch (error) {
+            console.error('Payment flow error:', error);
+            setLoading(false);
+        }
+    };
+
+    const handleCardSelect = async (forcePaid = false) => {
+        if (!isPaid && !forcePaid) {
+            await handlePayment();
+            return;
+        }
+
         const shuffled = shuffleDeck(tarotDeck);
         const numCards = spreadType === 'three' ? 3 : 1;
         const selected = shuffled.slice(0, numCards).map((card, index) => ({
