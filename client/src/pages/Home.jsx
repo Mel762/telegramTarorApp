@@ -1,11 +1,48 @@
+import WebApp from '@twa-dev/sdk';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Home.css';
 
 const Home = ({ user, t }) => {
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
 
-    const startReading = (type) => {
-        navigate('/reading', { state: { spreadType: type } });
+    const startReading = async (type) => {
+        if (isLoading) return;
+
+        // Free reading (Card of the Day)
+        if (type === 'day') {
+            navigate('/reading', { state: { spreadType: type } });
+            return;
+        }
+
+        // Paid readings
+        setIsLoading(true);
+        try {
+            const response = await fetch('/api/create-stars-invoice', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userId: user?.id, spreadType: type })
+            });
+            const data = await response.json();
+
+            if (data.invoiceLink) {
+                WebApp.openInvoice(data.invoiceLink, (status) => {
+                    setIsLoading(false);
+                    if (status === 'paid') {
+                        navigate('/reading', { state: { spreadType: type } });
+                    } else {
+                        console.log('Payment cancelled or failed:', status);
+                    }
+                });
+            } else {
+                console.error('Failed to create invoice:', data.error);
+                setIsLoading(false);
+            }
+        } catch (error) {
+            console.error('Payment error:', error);
+            setIsLoading(false);
+        }
     };
 
     // Helper to estimate price in USD (approximate)

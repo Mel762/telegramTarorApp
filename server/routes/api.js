@@ -148,6 +148,19 @@ router.post('/create-stars-invoice', async (req, res) => {
     }
 });
 
+router.post('/chat', async (req, res) => {
+    try {
+        const { userId, history, newMessage, context } = req.body;
+        console.log(`Chat request from User ${userId}: ${newMessage}`);
+
+        const response = await continueChat(history, newMessage, context);
+        res.json({ response });
+    } catch (error) {
+        console.error('Chat API Error:', error);
+        res.status(500).json({ error: 'Failed to generate response' });
+    }
+});
+
 // Get or Create User
 router.get('/user/:id', async (req, res) => {
     const telegramId = req.params.id;

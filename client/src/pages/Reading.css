@@ -8,11 +8,13 @@
     position: relative;
 }
 
-/* 1. BACK BUTTON (Glass Style) */
+/* 1. BACK BUTTON (Glass Style - Sticky) */
 .back-btn {
-    position: absolute;
+    position: sticky;
     top: 20px;
-    left: 20px;
+    align-self: flex-start;
+    margin-left: 10px;
+    /* Slight offset */
 
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -26,8 +28,9 @@
 
     cursor: pointer;
     transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
-    z-index: 10;
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .back-btn:hover {
@@ -39,8 +42,8 @@
 .reading-intro {
     width: 100%;
     max-width: 600px;
-    margin-top: 100px;
-    /* More space */
+    margin-top: 40px;
+    /* Reduced margin since button is in flow */
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -50,7 +53,6 @@
 .reading-intro h2 {
     font-family: var(--font-serif);
     font-size: 28px;
-    color: #FFFFFF;
 }
 
 /* Shuffling & Other States */

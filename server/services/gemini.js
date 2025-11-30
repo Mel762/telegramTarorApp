@@ -104,7 +104,10 @@ async function continueChat(history, newMessage, userContext = {}) {
 function cleanResponse(text) {
     if (!text) return text;
     // Remove bold/italic markers (*, _), headers (#), and code blocks (`)
-    return text.replace(/[\*_#`]/g, '');
+    let cleaned = text.replace(/[\*_#`]/g, '');
+    // Remove HTML tags like </blockquote>, </div>, etc.
+    cleaned = cleaned.replace(/<\/?[^>]+(>|$)/g, "");
+    return cleaned.trim();
 }
 
 function getFallbackMessage(lang) {
