@@ -4,31 +4,63 @@
     align-items: center;
     min-height: 100vh;
     padding: 20px;
-    color: var(--text-color);
+    color: #FFFFFF;
+    position: relative;
 }
 
+/* 1. BACK BUTTON (Glass Style) */
+.back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 8px 16px;
+
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: var(--font-main);
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    z-index: 10;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(-2px);
+}
+
+/* 2. HEADER (Simplified & Focused) */
 .reading-intro {
     width: 100%;
     max-width: 600px;
-    margin-top: 60px;
-    /* Clear the absolute back button */
+    margin-top: 100px;
+    /* More space */
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .reading-intro h2 {
     font-family: var(--font-serif);
-    color: var(--secondary-color);
-    text-shadow: 0 0 10px var(--primary-color);
-    margin-bottom: 20px;
+    font-size: 28px;
+    color: #FFFFFF;
 }
 
-/* Shuffling Animation */
+/* Shuffling & Other States */
 .shuffling-anim {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 300px;
+    margin-top: 40px;
 }
 
 .deck-shuffle {
@@ -44,7 +76,7 @@
     background-image: url('/card-back.png');
     background-size: cover;
     border-radius: 10px;
-    border: 1px solid var(--secondary-color);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
@@ -84,7 +116,7 @@
     }
 }
 
-/* Selection / Deck Stack */
+/* Selection */
 .card-selection {
     display: flex;
     flex-direction: column;
@@ -107,7 +139,7 @@
     background-image: url('/card-back.png');
     background-size: cover;
     border-radius: 10px;
-    border: 1px solid var(--secondary-color);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s;
 }
@@ -128,7 +160,7 @@
     transform: translateY(-10px);
 }
 
-/* Reveal Section */
+/* Reveal */
 .reading-reveal {
     width: 100%;
     max-width: 800px;
@@ -180,53 +212,10 @@
 
 .card-position {
     font-family: var(--font-serif);
-    color: var(--secondary-color);
+    color: rgba(255, 255, 255, 0.7);
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-}
-
-/* Result */
-.reading-result {
-    background: rgba(26, 11, 46, 0.8);
-    padding: 20px;
-    border-radius: 15px;
-    border: 1px solid var(--secondary-color);
-    backdrop-filter: blur(10px);
-    animation: fadeIn 1s ease-in;
-    max-width: 600px;
-    text-align: left;
-    line-height: 1.6;
-}
-
-.ai-reading h3 {
-    font-family: var(--font-serif);
-    color: var(--accent-color);
-    margin-top: 0;
-    text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: 10px;
-}
-
-.back-btn {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    background: transparent;
-    border: 1px solid var(--secondary-color);
-    color: var(--secondary-color);
-    padding: 8px 15px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-family: var(--font-main);
-    transition: all 0.3s;
-    z-index: 10;
-    /* Ensure it's clickable */
-}
-
-.back-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateX(-3px);
 }
 
 .reveal-instruction {
@@ -256,14 +245,8 @@
     padding-bottom: 40px;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Ensure chat messages are visible in reveal phase */
+.reading-reveal .chat-message.ai {
+    display: flex;
+    /* Restore display for reveal phase */
 }

@@ -1,53 +1,48 @@
 .profile {
     padding: 20px;
     padding-bottom: 80px;
-    color: var(--text-color);
+    color: #FFFFFF;
     max-width: 600px;
     margin: 0 auto;
 }
 
+/* 3. PROFILE BLOCK (Avatar & Name) */
 .profile-header {
     display: flex;
     align-items: center;
     gap: 20px;
     margin-bottom: 30px;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 20px;
-    border-radius: 15px;
-    backdrop-filter: blur(5px);
+    /* Clean, less massive */
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    backdrop-filter: none;
 }
 
 .profile-avatar {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: var(--primary-color);
+    /* Glass effect for avatar */
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
-    border: 2px solid var(--secondary-color);
+    color: #FFFFFF;
 }
 
 .profile-info h2 {
     margin: 0;
-    font-size: 1.5rem;
-    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 700;
+    /* Bold */
+    font-family: var(--font-main);
+    color: #FFFFFF;
 }
 
-.tier-badge {
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    margin-top: 5px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    background: #4a4a4a;
-    color: #ccc;
-}
-
-/* Settings */
+/* 1. SETTINGS CARDS (Glassmorphism) */
 .settings-section {
     background: transparent;
     padding: 0;
@@ -58,11 +53,13 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: stretch;
-    background: rgba(30, 30, 40, 0.6);
+
+    /* Glass Style */
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
     padding: 20px;
-    border-radius: 15px;
-    margin-bottom: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: 12px;
 }
 
 .setting-main {
@@ -71,26 +68,27 @@
     align-items: center;
     width: 100%;
     gap: 15px;
-    /* Add gap between text and switch */
 }
 
 .setting-label {
     flex: 1;
-    /* Allow text to take available space */
     min-width: 0;
-    /* Prevent flex item from overflowing */
 }
 
+/* 2. TEXT HIERARCHY */
 .setting-label h4 {
-    margin: 0 0 5px 0;
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: white;
+    margin: 0 0 4px 0;
+    font-size: 16px;
+    font-weight: 600;
+    /* Semi-Bold */
+    color: #FFFFFF;
 }
 
 .setting-label p {
     margin: 0;
-    font-size: 0.9rem;
+    font-size: 14px;
+    font-weight: 400;
+    /* Regular */
     color: rgba(255, 255, 255, 0.6);
     line-height: 1.3;
 }
@@ -107,13 +105,10 @@
 
 .setting-extra label {
     color: rgba(255, 255, 255, 0.9);
-    font-size: 1rem;
+    font-size: 14px;
 }
 
-.setting-item:last-child {
-    margin-bottom: 0;
-}
-
+/* 4. INTERACTIVE ELEMENTS */
 /* Toggle Switch */
 .switch {
     position: relative;
@@ -136,7 +131,8 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #4a4a4a;
+    background-color: rgba(255, 255, 255, 0.15);
+    /* OFF State */
     transition: .4s;
     border-radius: 34px;
 }
@@ -148,24 +144,87 @@
     width: 20px;
     left: 4px;
     bottom: 4px;
-    background-color: white;
+    background-color: #FFFFFF;
+    /* Thumb Color */
     transition: .4s;
     border-radius: 50%;
 }
 
 input:checked+.slider {
-    background-color: var(--primary-color);
+    background-color: #6A1B9A;
+    /* ON State (Accent Purple) */
 }
 
 input:checked+.slider:before {
     transform: translateX(22px);
 }
 
-input:disabled+.slider {
-    opacity: 0.5;
-    cursor: not-allowed;
+/* Back Button */
+.back-home-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 56px;
+    /* Fixed height */
+    margin-top: 20px;
+    /* Separation from settings */
+
+    background: rgba(255, 255, 255, 0.05);
+    /* Lighter glass */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Subtle border */
+    border-radius: 16px;
+
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 600;
+    /* Semi-Bold */
+    font-family: var(--font-main);
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
 }
 
+.back-home-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Language Switcher */
+.lang-switcher-footer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+    /* Increased separation */
+    padding-top: 10px;
+}
+
+.lang-btn-small {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* Inactive Border */
+    color: #FFFFFF;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    min-width: 44px;
+}
+
+.lang-btn-small.active {
+    background: #6A1B9A;
+    /* Active Accent */
+    border-color: #6A1B9A;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+/* Time Picker Styling */
 .time-picker-inline {
     background: rgba(0, 0, 0, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -189,50 +248,4 @@ input:disabled+.slider {
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-.back-home-btn {
-    display: block;
-    width: 100%;
-    padding: 15px;
-    margin-top: 30px;
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: var(--text-color);
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-/* Language Switcher Footer */
-.lang-switcher-footer {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
-    padding-top: 10px;
-}
-
-.lang-btn-small {
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: rgba(255, 255, 255, 0.6);
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: all 0.2s;
-    text-transform: uppercase;
-    min-width: 40px;
-}
-
-.lang-btn-small:hover {
-    border-color: var(--primary-color);
-    color: var(--primary-color);
-}
-
-.lang-btn-small.active {
-    background: var(--primary-color);
-    border-color: var(--primary-color);
-    color: white;
-    font-weight: bold;
 }

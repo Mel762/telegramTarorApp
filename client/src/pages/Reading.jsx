@@ -12,9 +12,7 @@ const Reading = ({ user, t, lang }) => {
 
     const [step, setStep] = useState(spreadType === 'day' ? 'shuffling' : 'intro'); // intro, shuffling, selection, reveal
     const [cards, setCards] = useState([]);
-    const [messages, setMessages] = useState([
-        { sender: 'ai', text: t('focus') }
-    ]);
+    const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
