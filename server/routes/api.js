@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { generateReading, continueChat } = require('../services/gemini');
-const { initDb } = require('../database/db');
+const { pool } = require('../database/db');
 
 const fs = require('fs');
 
@@ -41,11 +41,6 @@ function getMsg(key, lang) {
     return (MESSAGES[key] && MESSAGES[key][lang]) || MESSAGES[key]['en'];
 }
 
-// Middleware to check user subscription limits - REMOVED for Pay-per-Reading
-// We now rely on frontend payment flow or direct payment checks if needed.
-// For now, we assume if they hit /reading, they have paid or it's free.
-// Ideally, we should verify payment here, but let's keep it simple as per plan.
-
 router.post('/reading', async (req, res) => {
     try {
         log(`DEBUG: Reading Handler Start. req.user: ${JSON.stringify(req.user)}`);
@@ -57,22 +52,18 @@ router.post('/reading', async (req, res) => {
             return res.status(400).json({ error: 'No cards provided' });
         }
 
-        const db = await initDb();
         // Get internal user ID first
-        const user = await db.get('SELECT id FROM users WHERE telegram_id = ?', [userId]);
+        const userResult = await pool.query('SELECT id, last_daily_reading_date FROM users WHERE telegram_id = $1', [userId]);
+        const user = userResult.rows[0];
 
         if (user && spreadType === 'day') {
-            // Check for any reading of type 'day' created today (UTC)
-            const existing = await db.get(`
-                SELECT id, created_at FROM readings 
-                WHERE user_id = ? 
-                AND spread_type = 'day' 
-                AND date(created_at) = date('now')
-            `, [user.id]);
+            // Check last_daily_reading_date
+            const today = new Date().toISOString().split('T')[0];
+            const lastDate = user.last_daily_reading_date ? new Date(user.last_daily_reading_date).toISOString().split('T')[0] : null;
 
-            console.log(`Daily Limit Check: User ${user.id}, Found: ${existing ? existing.id : 'None'}, Date: ${existing ? existing.created_at : 'N/A'}`);
+            console.log(`Daily Limit Check: User ${user.id}, Last: ${lastDate}, Today: ${today}`);
 
-            if (existing) {
+            if (lastDate === today) {
                 return res.status(200).json({
                     error: getMsg('limit_day', lang || 'en'),
                     limitReached: true
@@ -84,19 +75,46 @@ router.post('/reading', async (req, res) => {
 
         // Save to DB
         try {
-            const db = await initDb();
-            // Get internal user ID first
-            const user = await db.get('SELECT id FROM users WHERE telegram_id = ?', [userId]);
+            // Get internal user ID first (re-fetch to be safe, or reuse)
+            const userResult = await pool.query('SELECT id FROM users WHERE telegram_id = $1', [userId]);
+            const user = userResult.rows[0];
 
             if (user) {
-                await db.run(`
+                await pool.query(`
                     INSERT INTO readings (user_id, spread_type, cards, question, interpretation)
-                    VALUES (?, ?, ?, ?, ?)
+                    VALUES ($1, $2, $3, $4, $5)
                 `, [user.id, spreadType, JSON.stringify(cards), question, reading]);
             }
         } catch (dbError) {
             console.error('DB Save Error:', dbError);
             log(`DB Save Error: ${dbError}`);
+        }
+
+        // Update last_daily_reading_date if it was a daily reading
+        if (spreadType === 'day' && user) {
+            try {
+                await pool.query(`UPDATE users SET last_daily_reading_date = CURRENT_TIMESTAMP WHERE id = $1`, [user.id]);
+            } catch (updateError) {
+                console.error('Error updating last_daily_reading_date:', updateError);
+            }
+        }
+
+        // Decrement Free Credits if applicable
+        try {
+            const userResult = await pool.query('SELECT id, free_readings_one, free_readings_three FROM users WHERE telegram_id = $1', [userId]);
+            const user = userResult.rows[0];
+
+            if (user) {
+                if (spreadType === 'one' && user.free_readings_one > 0) {
+                    await pool.query('UPDATE users SET free_readings_one = free_readings_one - 1 WHERE id = $1', [user.id]);
+                    console.log(`User ${user.id} used 1 free reading (one). Remaining: ${user.free_readings_one - 1}`);
+                } else if (spreadType === 'three' && user.free_readings_three > 0) {
+                    await pool.query('UPDATE users SET free_readings_three = free_readings_three - 1 WHERE id = $1', [user.id]);
+                    console.log(`User ${user.id} used 1 free reading (three). Remaining: ${user.free_readings_three - 1}`);
+                }
+            }
+        } catch (creditError) {
+            console.error('Credit Decrement Error:', creditError);
         }
 
         res.json({ reading });
@@ -167,22 +185,23 @@ router.get('/user/:id', async (req, res) => {
     const { username, first_name, language_code } = req.query;
 
     try {
-        const db = await initDb();
-        let user = await db.get('SELECT * FROM users WHERE telegram_id = ?', [telegramId]);
+        let userResult = await pool.query('SELECT * FROM users WHERE telegram_id = $1', [telegramId]);
+        let user = userResult.rows[0];
 
         if (!user) {
             // Create new user
-            await db.run(`
-                INSERT INTO users (telegram_id, username, first_name, language_code)
-                VALUES (?, ?, ?, ?)
-            `, [telegramId, username, first_name, language_code]);
-            user = await db.get('SELECT * FROM users WHERE telegram_id = ?', [telegramId]);
+            await pool.query(`
+                INSERT INTO users (telegram_id, username, language_code, free_readings_one, free_readings_three)
+                VALUES ($1, $2, $3, 3, 1)
+            `, [telegramId, username, language_code]);
+            userResult = await pool.query('SELECT * FROM users WHERE telegram_id = $1', [telegramId]);
+            user = userResult.rows[0];
         } else {
             // Update info if changed
-            if (username !== user.username || first_name !== user.first_name) {
-                await db.run(`
-                    UPDATE users SET username = ?, first_name = ? WHERE telegram_id = ?
-                `, [username, first_name, telegramId]);
+            if (username !== user.username) {
+                await pool.query(`
+                    UPDATE users SET username = $1 WHERE telegram_id = $2
+                `, [username, telegramId]);
             }
         }
 
@@ -198,14 +217,13 @@ router.post('/user/settings', async (req, res) => {
     const { userId, notificationsEnabled, notificationTime, receiveDailyReading } = req.body;
 
     try {
-        const db = await initDb();
         // userId here is the internal ID from profileData, or we should use telegram_id if passed
         // Profile.jsx passes profileData.id which is internal ID.
 
-        await db.run(`
+        await pool.query(`
             UPDATE users 
-            SET notifications_enabled = ?, notification_time = ?, receive_daily_reading = ?
-            WHERE id = ?
+            SET notifications_enabled = $1, notification_time = $2, receive_daily_reading = $3
+            WHERE id = $4
         `, [notificationsEnabled, notificationTime, receiveDailyReading, userId]);
 
         res.json({ success: true });

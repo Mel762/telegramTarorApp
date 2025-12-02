@@ -16,6 +16,16 @@ const Home = ({ user, t }) => {
             return;
         }
 
+        // Check for free credits
+        if (type === 'one' && user?.free_readings_one > 0) {
+            navigate('/reading', { state: { spreadType: type } });
+            return;
+        }
+        if (type === 'three' && user?.free_readings_three > 0) {
+            navigate('/reading', { state: { spreadType: type } });
+            return;
+        }
+
         // Paid readings
         setIsLoading(true);
         try {
@@ -46,7 +56,23 @@ const Home = ({ user, t }) => {
     };
 
     // Helper to estimate price in USD (approximate)
-    const getPriceDisplay = (stars) => {
+    const getPriceDisplay = (stars, type) => {
+        // Check for free credits
+        if (type === 'one' && user?.free_readings_one > 0) {
+            return (
+                <div className="price-container">
+                    <span className="price-stars">{t('free') || 'Free'} ({user.free_readings_one})</span>
+                </div>
+            );
+        }
+        if (type === 'three' && user?.free_readings_three > 0) {
+            return (
+                <div className="price-container">
+                    <span className="price-stars">{t('free') || 'Free'} ({user.free_readings_three})</span>
+                </div>
+            );
+        }
+
         if (stars === 0) {
             return (
                 <div className="price-container">
@@ -84,21 +110,21 @@ const Home = ({ user, t }) => {
                 <button className="btn btn--primary" onClick={() => startReading('day')}>
                     <span className="btn__text">{t('cardOfDay')}</span>
                     <span className="price-badge star">
-                        {getPriceDisplay(0)}
+                        {getPriceDisplay(0, 'day')}
                     </span>
                 </button>
 
                 <button className="btn btn--secondary" onClick={() => startReading('one')}>
                     <span className="btn__text">{t('oneCard')}</span>
                     <span className="price-badge star">
-                        {getPriceDisplay(1)}
+                        {getPriceDisplay(1, 'one')}
                     </span>
                 </button>
 
                 <button className="btn btn--accent" onClick={() => startReading('three')}>
                     <span className="btn__text">{t('threeCard')}</span>
                     <span className="price-badge star">
-                        {getPriceDisplay(50)}
+                        {getPriceDisplay(50, 'three')}
                     </span>
                 </button>
 
