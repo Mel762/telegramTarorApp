@@ -75,7 +75,12 @@ function App() {
     }
   }, [user]);
 
-  const t = (key) => translations[lang][key] || translations['en'][key];
+  const t = (key) => {
+    if (!translations) return key;
+    const langData = translations[lang] || translations['en'];
+    if (!langData) return key;
+    return langData[key] || translations['en']?.[key] || key;
+  };
 
   return (
     <Router>
