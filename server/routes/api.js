@@ -3,10 +3,10 @@ const router = express.Router();
 const { generateReading, continueChat } = require('../services/gemini');
 const { pool } = require('../database/db');
 
-const fs = require('fs');
+
 
 function log(msg) {
-    fs.appendFileSync('debug.log', msg + '\n');
+    console.log(msg);
 }
 
 const MESSAGES = {
