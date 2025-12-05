@@ -50,6 +50,9 @@ function App() {
   // Register user with backend when user state is set
   useEffect(() => {
     if (user?.id) {
+      // Avoid re-fetching if we already have DB data (e.g., free_readings_one is defined)
+      if (user.free_readings_one !== undefined) return;
+
       const query = new URLSearchParams({
         username: user.username || '',
         first_name: user.first_name || '',
@@ -60,6 +63,8 @@ function App() {
         .then(res => res.json())
         .then(data => {
           console.log('User registered/fetched:', data);
+          // Merge backend data (including free credits) into user state
+          setUser(prev => ({ ...prev, ...data }));
         })
         .catch(err => console.error('Error registering user:', err));
     }
