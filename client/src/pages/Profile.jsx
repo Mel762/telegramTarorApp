@@ -68,7 +68,7 @@ const Profile = ({ user, t, lang, setLang }) => {
             </div>
 
             <div className="settings-section">
-                <div className="setting-item">
+                <div className={`setting-item ${profileData?.notifications_enabled ? 'expanded' : ''}`}>
                     <div className="setting-main">
                         <div className="setting-label">
                             <h4>{t('notifications')}</h4>
@@ -83,9 +83,20 @@ const Profile = ({ user, t, lang, setLang }) => {
                             <span className="slider"></span>
                         </label>
                     </div>
+                    {profileData?.notifications_enabled === 1 && (
+                        <div className="setting-extra">
+                            <label>{t('sendTime')}:</label>
+                            <input
+                                type="time"
+                                className="time-picker-inline"
+                                value={profileData?.notification_time || '09:00'}
+                                onChange={(e) => handleSettingChange('notification_time', e.target.value)}
+                            />
+                        </div>
+                    )}
                 </div>
 
-                <div className={`setting-item ${profileData?.receive_daily_reading ? 'expanded' : ''}`}>
+                <div className="setting-item">
                     <div className="setting-main">
                         <div className="setting-label">
                             <h4>{t('dailyReading')}</h4>
@@ -100,17 +111,6 @@ const Profile = ({ user, t, lang, setLang }) => {
                             <span className="slider"></span>
                         </label>
                     </div>
-                    {profileData?.receive_daily_reading === 1 && (
-                        <div className="setting-extra">
-                            <label>{t('sendTime')}:</label>
-                            <input
-                                type="time"
-                                className="time-picker-inline"
-                                value={profileData?.notification_time || '09:00'}
-                                onChange={(e) => handleSettingChange('notification_time', e.target.value)}
-                            />
-                        </div>
-                    )}
                 </div>
             </div>
 

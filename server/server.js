@@ -32,6 +32,8 @@ app.use((req, res) => {
 // Initialize DB connection pool
 initDb().catch(console.error);
 
+const { startScheduler } = require('./scheduler');
+
 // Start server if running directly (Local Dev)
 if (require.main === module) {
     (async () => {
@@ -39,6 +41,7 @@ if (require.main === module) {
             // Launch bot (Long Polling for local dev)
             bot.launch().then(() => {
                 console.log('Bot started');
+                startScheduler(); // Start the notification scheduler
             }).catch(err => console.error('Bot launch error:', err));
 
             app.listen(PORT, () => {
