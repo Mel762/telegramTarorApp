@@ -67,8 +67,8 @@
 
 .deck-shuffle {
     position: relative;
-    width: 120px;
-    height: 200px;
+    width: 180px;
+    height: 300px;
 }
 
 .card-shuffle {
@@ -129,8 +129,8 @@
 
 .deck-stack {
     position: relative;
-    width: 120px;
-    height: 200px;
+    width: 180px;
+    height: 300px;
     margin-top: 20px;
 }
 
@@ -209,6 +209,33 @@
     to {
         opacity: 1;
         transform: translateY(0) scale(1);
+    }
+}
+
+/* Sway Animation */
+.card-sway {
+    animation: sway 5s ease-in-out infinite alternate;
+}
+
+.card-wrapper:nth-child(1) .card-sway {
+    animation-delay: 0s;
+}
+
+.card-wrapper:nth-child(2) .card-sway {
+    animation-delay: 1.5s;
+}
+
+.card-wrapper:nth-child(3) .card-sway {
+    animation-delay: 0.7s;
+}
+
+@keyframes sway {
+    0% {
+        transform: rotate(-1.5deg) translateY(0);
+    }
+
+    100% {
+        transform: rotate(1.5deg) translateY(-8px);
     }
 }
 

@@ -250,12 +250,14 @@ const Reading = ({ user, t, lang }) => {
                         {cards.map((card, idx) => (
                             <div key={card.id} className="card-wrapper">
                                 <p className="card-position">{card.position}</p>
-                                <Card
-                                    name={card.name}
-                                    image={card.image}
-                                    isRevealed={card.isRevealed}
-                                    onReveal={() => revealCard(idx)}
-                                />
+                                <div className="card-sway">
+                                    <Card
+                                        name={card.name}
+                                        image={card.image}
+                                        isRevealed={card.isRevealed}
+                                        onReveal={() => revealCard(idx)}
+                                    />
+                                </div>
                             </div>
                         ))}
                     </div>
