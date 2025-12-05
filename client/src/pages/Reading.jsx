@@ -6,9 +6,16 @@ import { tarotDeck, shuffleDeck } from '../data/tarotDeck';
 import './Reading.css';
 
 const Reading = ({ user, t, lang, refreshUser }) => {
-    // ... (hooks remain same)
+    console.log('Reading component mounting. User:', user?.id, 'Lang:', lang);
+    const location = useLocation();
+    const navigate = useNavigate();
+    const { spreadType } = location.state || { spreadType: 'day' };
+    console.log('SpreadType:', spreadType);
 
-    // ... (useEffect remains same)
+    const [step, setStep] = useState(spreadType === 'day' ? 'shuffling' : 'intro'); // intro, shuffling, selection, reveal
+    console.log('Current Step:', step);
+
+    // ... (rest of the component)
 
     // ... (handleSendMessage remains same)
 
