@@ -61,14 +61,14 @@ const Home = ({ user, t }) => {
         if (type === 'one' && user?.free_readings_one > 0) {
             return (
                 <div className="price-container">
-                    <span className="price-stars">{t('free') || 'Free'} ({user.free_readings_one})</span>
+                    <span className="price-stars">{t('free') || 'Free'}</span>
                 </div>
             );
         }
         if (type === 'three' && user?.free_readings_three > 0) {
             return (
                 <div className="price-container">
-                    <span className="price-stars">{t('free') || 'Free'} ({user.free_readings_three})</span>
+                    <span className="price-stars">{t('free') || 'Free'}</span>
                 </div>
             );
         }
@@ -117,7 +117,7 @@ const Home = ({ user, t }) => {
                 <button className="btn btn--secondary" onClick={() => startReading('one')}>
                     <span className="btn__text">{t('oneCard')}</span>
                     <span className="price-badge star">
-                        {getPriceDisplay(1, 'one')}
+                        {getPriceDisplay(20, 'one')}
                     </span>
                 </button>
 

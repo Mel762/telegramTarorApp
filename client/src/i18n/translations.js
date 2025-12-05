@@ -36,7 +36,11 @@ export const translations = {
             "Discover your destiny, {name}.",
             "The universe is listening, {name}.",
             "The answer is near, {name}."
-        ]
+        ],
+        general: "General",
+        past: "Past",
+        present: "Present",
+        future: "Future"
     },
     ru: {
         welcome: "Твой таролог приветствует тебя",
@@ -75,7 +79,11 @@ export const translations = {
             "Узнай свою судьбу, {name}.",
             "Вселенная слушает, {name}.",
             "Ответ уже рядом, {name}."
-        ]
+        ],
+        general: "Общее",
+        past: "Прошлое",
+        present: "Настоящее",
+        future: "Будущее"
     },
     uk: {
         welcome: "Твій таролог вітає тебе",
@@ -114,6 +122,10 @@ export const translations = {
             "Дізнайся свою долю, {name}.",
             "Всесвіт слухає, {name}.",
             "Відповідь вже поруч, {name}."
-        ]
+        ],
+        general: "Загальне",
+        past: "Минуле",
+        present: "Теперішнє",
+        future: "Майбутнє"
     }
 };

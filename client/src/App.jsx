@@ -47,26 +47,31 @@ function App() {
     }
   }, []);
 
+  // Function to refresh user data from backend
+  const refreshUser = () => {
+    if (!user?.id) return;
+
+    const query = new URLSearchParams({
+      username: user.username || '',
+      first_name: user.first_name || '',
+      language_code: user.language_code || ''
+    }).toString();
+
+    fetch(`/api/user/${user.id}?${query}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log('User registered/fetched:', data);
+        setUser(prev => ({ ...prev, ...data }));
+      })
+      .catch(err => console.error('Error registering user:', err));
+  };
+
   // Register user with backend when user state is set
   useEffect(() => {
     if (user?.id) {
       // Avoid re-fetching if we already have DB data (e.g., free_readings_one is defined)
       if (user.free_readings_one !== undefined) return;
-
-      const query = new URLSearchParams({
-        username: user.username || '',
-        first_name: user.first_name || '',
-        language_code: user.language_code || ''
-      }).toString();
-
-      fetch(`/api/user/${user.id}?${query}`)
-        .then(res => res.json())
-        .then(data => {
-          console.log('User registered/fetched:', data);
-          // Merge backend data (including free credits) into user state
-          setUser(prev => ({ ...prev, ...data }));
-        })
-        .catch(err => console.error('Error registering user:', err));
+      refreshUser();
     }
   }, [user]);
 
@@ -76,8 +81,8 @@ function App() {
     <Router>
       <div className="app-container">
         <Routes>
-          <Route path="/" element={<Home user={user} t={t} lang={lang} setLang={setLang} />} />
-          <Route path="/reading" element={<Reading user={user} t={t} lang={lang} />} />
+          <Route path="/" element={<Home user={user} t={t} lang={lang} setLang={setLang} refreshUser={refreshUser} />} />
+          <Route path="/reading" element={<Reading user={user} t={t} lang={lang} refreshUser={refreshUser} />} />
           <Route path="/profile" element={<Profile user={user} t={t} lang={lang} setLang={setLang} />} />
         </Routes>
       </div>

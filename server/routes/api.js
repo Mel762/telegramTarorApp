@@ -133,7 +133,7 @@ router.post('/create-stars-invoice', async (req, res) => {
 
     // Pricing (Stars)
     const prices = {
-        'one': 1,   // 1 Star
+        'one': 20,   // 20 Stars
         'three': 50 // 50 Stars
     };
 
