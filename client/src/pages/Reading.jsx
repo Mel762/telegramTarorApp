@@ -96,7 +96,7 @@ const Reading = ({ user, t, lang, refreshUser }) => {
             const res = await fetch('/api/create-stars-invoice', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userId: user.id, spreadType }) // Use user.id (telegram_id)
+                body: JSON.stringify({ userId: user.telegram_id || user.id, spreadType }) // Use correct ID
             });
             const data = await res.json();
 
@@ -132,6 +132,8 @@ const Reading = ({ user, t, lang, refreshUser }) => {
     };
 
     const handleCardSelect = async (forcePaid = false) => {
+        if (loading || isLocked) return;
+
         if (!isPaid && !forcePaid) {
             await handlePayment();
             return;
@@ -145,10 +147,7 @@ const Reading = ({ user, t, lang, refreshUser }) => {
             isRevealed: false
         }));
 
-        setCards(selected);
-        setStep('reveal');
-
-        // Initial reading request
+        // Do NOT reveal yet. Check server first.
         fetchReading(selected, messages[messages.length - 1].text);
     };
 
@@ -173,6 +172,7 @@ const Reading = ({ user, t, lang, refreshUser }) => {
             if (data.limitReached) {
                 setIsLocked(true);
                 setLimitMessage(data.error);
+                // Do not reveal cards. Stay on selection step.
                 return;
             }
 
@@ -181,6 +181,9 @@ const Reading = ({ user, t, lang, refreshUser }) => {
                 return;
             }
 
+            // Success! Now reveal cards.
+            setCards(selectedCards);
+            setStep('reveal');
             setMessages(prev => [...prev, { sender: 'ai', text: data.reading }]);
 
             // Refresh user data to update credits
@@ -196,7 +199,6 @@ const Reading = ({ user, t, lang, refreshUser }) => {
 
     const revealCard = (index) => {
         if (isLocked) {
-            // Optional: Show a toast or shake animation
             return;
         }
         const newCards = [...cards];
@@ -233,13 +235,15 @@ const Reading = ({ user, t, lang, refreshUser }) => {
             )}
 
             {step === 'selection' && (
-                <div className="card-selection" onClick={handleCardSelect}>
+                <div className="card-selection" onClick={handleCardSelect} style={{ opacity: loading ? 0.5 : 1, pointerEvents: (loading || isLocked) ? 'none' : 'auto' }}>
                     <div className="deck-stack">
                         <div className="card-back"></div>
                         <div className="card-back"></div>
                         <div className="card-back"></div>
                     </div>
-                    <p style={{ marginTop: '20px', fontSize: '1.2rem' }}>{t('tapToDraw')}</p>
+                    <p style={{ marginTop: '20px', fontSize: '1.2rem', color: isLocked ? '#ff6b6b' : 'inherit' }}>
+                        {isLocked ? limitMessage : (loading ? t('shuffling') : t('tapToDraw'))}
+                    </p>
                 </div>
             )}
 
