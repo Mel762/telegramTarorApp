@@ -32,7 +32,7 @@ const Home = ({ user, t }) => {
             const response = await fetch('/api/create-stars-invoice', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userId: user?.id, spreadType: type })
+                body: JSON.stringify({ userId: user?.telegram_id || user?.id, spreadType: type })
             });
             const data = await response.json();
 

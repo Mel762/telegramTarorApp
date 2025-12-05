@@ -51,7 +51,9 @@ function App() {
 
   // Function to refresh user data from backend
   const refreshUser = () => {
-    if (!user?.id || isFetchingRef.current) return;
+    // Use telegram_id if available (after first fetch), otherwise use id (initial TG data)
+    const tgId = user?.telegram_id || user?.id;
+    if (!tgId || isFetchingRef.current) return;
 
     isFetchingRef.current = true;
     const query = new URLSearchParams({
@@ -60,7 +62,7 @@ function App() {
       language_code: user.language_code || ''
     }).toString();
 
-    fetch(`/api/user/${user.id}?${query}`)
+    fetch(`/api/user/${tgId}?${query}`)
       .then(res => res.json())
       .then(data => {
         console.log('User registered/fetched:', data);

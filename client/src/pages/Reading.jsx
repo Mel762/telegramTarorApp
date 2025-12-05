@@ -159,7 +159,7 @@ const Reading = ({ user, t, lang, refreshUser }) => {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    userId: user?.id || 123,
+                    userId: user?.telegram_id || user?.id || 123,
                     username: user?.username,
                     name: user?.first_name,
                     lang,
