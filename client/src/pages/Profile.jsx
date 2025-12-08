@@ -8,14 +8,15 @@ const Profile = ({ user, t, lang, setLang }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        if (user?.id) {
+        const tgId = user?.telegram_id || user?.id;
+        if (tgId) {
             const query = new URLSearchParams({
                 username: user.username || '',
                 first_name: user.first_name || '',
                 language_code: user.language_code || ''
             }).toString();
 
-            fetch(`/api/user/${user.id}?${query}`)
+            fetch(`/api/user/${tgId}?${query}`)
                 .then(res => res.json())
                 .then(data => {
                     setProfileData(data);

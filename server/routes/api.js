@@ -217,14 +217,15 @@ router.post('/user/settings', async (req, res) => {
     const { userId, notificationsEnabled, notificationTime, receiveDailyReading } = req.body;
 
     try {
-        // userId here is the internal ID from profileData, or we should use telegram_id if passed
-        // Profile.jsx passes profileData.id which is internal ID.
+        console.log('Settings Update Request:', { userId, notificationsEnabled, notificationTime, receiveDailyReading });
 
-        await pool.query(`
+        const result = await pool.query(`
             UPDATE users 
             SET notifications_enabled = $1, notification_time = $2, receive_daily_reading = $3
             WHERE id = $4
         `, [notificationsEnabled, notificationTime, receiveDailyReading, userId]);
+
+        console.log('Update Result RowCount:', result.rowCount);
 
         res.json({ success: true });
     } catch (error) {
