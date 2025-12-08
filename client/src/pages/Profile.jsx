@@ -68,7 +68,7 @@ const Profile = ({ user, t, lang, setLang }) => {
             </div>
 
             <div className="settings-section">
-                <div className="setting-item">
+                <div className={`setting-item ${profileData?.notifications_enabled ? 'expanded' : ''}`}>
                     <div className="setting-main">
                         <div className="setting-label">
                             <h4>{t('notifications')}</h4>
@@ -83,9 +83,35 @@ const Profile = ({ user, t, lang, setLang }) => {
                             <span className="slider"></span>
                         </label>
                     </div>
+                    {profileData?.notifications_enabled === 1 && (
+                        <div className="setting-extra">
+                            <label>{t('sendTime')}:</label>
+                            <input
+                                type="time"
+                                className="time-picker-inline"
+                                value={(() => {
+                                    if (!profileData?.notification_time) return '09:00';
+                                    const [h, m] = profileData.notification_time.split(':');
+                                    const date = new Date();
+                                    date.setUTCHours(h, m, 0, 0);
+                                    const localH = date.getHours().toString().padStart(2, '0');
+                                    const localM = date.getMinutes().toString().padStart(2, '0');
+                                    return `${localH}:${localM}`;
+                                })()}
+                                onChange={(e) => {
+                                    const [h, m] = e.target.value.split(':');
+                                    const date = new Date();
+                                    date.setHours(h, m, 0, 0);
+                                    const utcH = date.getUTCHours().toString().padStart(2, '0');
+                                    const utcM = date.getUTCMinutes().toString().padStart(2, '0');
+                                    handleSettingChange('notification_time', `${utcH}:${utcM}`);
+                                }}
+                            />
+                        </div>
+                    )}
                 </div>
 
-                <div className={`setting-item ${profileData?.receive_daily_reading ? 'expanded' : ''}`}>
+                <div className="setting-item">
                     <div className="setting-main">
                         <div className="setting-label">
                             <h4>{t('dailyReading')}</h4>
@@ -100,17 +126,6 @@ const Profile = ({ user, t, lang, setLang }) => {
                             <span className="slider"></span>
                         </label>
                     </div>
-                    {profileData?.receive_daily_reading === 1 && (
-                        <div className="setting-extra">
-                            <label>{t('sendTime')}:</label>
-                            <input
-                                type="time"
-                                className="time-picker-inline"
-                                value={profileData?.notification_time || '09:00'}
-                                onChange={(e) => handleSettingChange('notification_time', e.target.value)}
-                            />
-                        </div>
-                    )}
                 </div>
             </div>
 
