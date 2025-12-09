@@ -40,6 +40,16 @@ async function initDb() {
       );
     `);
 
+    // Notification History Table (Audit Log)
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS notification_history (
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER REFERENCES users(id),
+        message_type TEXT,
+        created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
     return pool;
   } finally {
     client.release();

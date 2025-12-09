@@ -30,51 +30,56 @@ async function checkNotifications() {
     try {
         const now = new Date();
         const currentUtcTime = now.toISOString().substr(11, 5); // HH:mm in UTC
-
-        console.log(`[Scheduler] Checking notifications for UTC time: ${currentUtcTime}`);
-
-        // Find users who:
-        // 1. Have notifications enabled
-        // 2. Have notification_time matching current UTC time
-        // 3. Have NOT done a daily reading today (last_daily_reading_date != today)
-        // Note: We check last_daily_reading_date against CURRENT DATE (UTC). 
-        // Ideally we should check against user's local date, but we are simplifying to UTC date for now as per plan.
-
         const todayUtc = now.toISOString().split('T')[0];
 
+        console.log(`[Scheduler] Check triggered at ${now.toISOString()} (UTC Time: ${currentUtcTime})`);
+
+        // Criteria for sending a notification:
+        // 1. Notifications ENABLED.
+        // 2. Notification Time <= Current Time (Time has passed).
+        // 3. Last Daily Reading Date != Today (Haven't played today).
+        // 4. NOT in notification_history for today (Haven't been notified today).
+
         const query = `
-            SELECT id, telegram_id, username, language_code, last_daily_reading_date 
-            FROM users 
-            WHERE notifications_enabled = 1 
-            AND notification_time = $1
+            SELECT u.id, u.telegram_id, u.username, u.language_code, u.last_daily_reading_date, u.notification_time
+            FROM users u
+            WHERE u.notifications_enabled = 1 
+            AND u.notification_time <= $1
+            AND (u.last_daily_reading_date IS NULL OR date(u.last_daily_reading_date) != date($2))
+            AND NOT EXISTS (
+                SELECT 1 FROM notification_history h 
+                WHERE h.user_id = u.id 
+                AND date(h.created_at) = date($2)
+            )
         `;
 
-        const result = await pool.query(query, [currentUtcTime]);
+        const result = await pool.query(query, [currentUtcTime, todayUtc]);
         const users = result.rows;
 
         if (users.length > 0) {
-            console.log(`[Scheduler] Found ${users.length} users to notify.`);
+            console.log(`[Scheduler] Found ${users.length} users needing notification.`);
+        } else {
+            console.log(`[Scheduler] No users need notification at this time.`);
         }
 
         for (const user of users) {
-            // Check if they already did a reading today (UTC)
-            let lastDate = null;
-            if (user.last_daily_reading_date) {
-                lastDate = new Date(user.last_daily_reading_date).toISOString().split('T')[0];
-            }
+            const lang = user.language_code || 'en';
+            const message = getRandomMessage(user.username, lang);
 
-            if (lastDate !== todayUtc) {
-                const lang = user.language_code || 'en';
-                const message = getRandomMessage(user.username, lang);
+            try {
+                await bot.telegram.sendMessage(user.telegram_id, message);
+                console.log(`[Scheduler] Sent notification to User ${user.id} (${user.username})`);
 
-                try {
-                    await bot.telegram.sendMessage(user.telegram_id, message);
-                    console.log(`[Scheduler] Sent notification to User ${user.id} (${user.username})`);
-                } catch (sendError) {
-                    console.error(`[Scheduler] Failed to send to User ${user.id}:`, sendError.message);
-                }
-            } else {
-                console.log(`[Scheduler] User ${user.id} already did reading today (UTC). Skipping.`);
+                // Insert into history (Audit Log)
+                await pool.query(`
+                    INSERT INTO notification_history (user_id, message_type)
+                    VALUES ($1, 'daily_reading')
+                 `, [user.id]);
+
+            } catch (sendError) {
+                console.error(`[Scheduler] Failed to send to User ${user.id}:`, sendError.message);
+                // Optional: IDK if we should mark as sent if failed? 
+                // For now, let's NOT mark it, so it retries next time (in 10 mins).
             }
         }
 
