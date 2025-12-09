@@ -1,5 +1,9 @@
 require('dotenv').config({ path: './server/.env' });
-const { pool } = require('./database/db');
+const { Pool } = require('pg');
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: { rejectUnauthorized: false } // Force SSL for Supabase
+});
 
 async function debugNotifications() {
     try {

@@ -234,4 +234,18 @@ router.post('/user/settings', async (req, res) => {
     }
 });
 
+router.get('/cron', async (req, res) => {
+    // Basic verification - better to use a secret query param or header in production
+    // if (req.query.key !== process.env.CRON_SECRET) return res.status(401).end();
+
+    try {
+        const { checkNotifications } = require('../services/notificationScheduler');
+        await checkNotifications();
+        res.status(200).json({ status: 'ok' });
+    } catch (error) {
+        console.error('Cron Error:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 module.exports = router;

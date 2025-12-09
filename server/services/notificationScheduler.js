@@ -83,10 +83,4 @@ async function checkNotifications() {
     }
 }
 
-function startScheduler() {
-    // Run every minute
-    setInterval(checkNotifications, 60 * 1000);
-    console.log('[Scheduler] Notification scheduler started.');
-}
-
-module.exports = { startScheduler };
+module.exports = { checkNotifications };
