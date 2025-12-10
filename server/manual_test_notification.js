@@ -1,4 +1,4 @@
-require('dotenv').config({ path: './server/.env' });
+require('dotenv').config();
 const { Pool } = require('pg');
 const { Telegraf } = require('telegraf');
 
@@ -9,29 +9,21 @@ const pool = new Pool({
 
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
 
+const { checkNotifications } = require('./services/notificationScheduler');
+
 async function testNotifications() {
-    console.log('--- Manual Notification Test ---');
+    console.log('--- Manual Notification Scheduler Test ---');
     try {
-        // 1. Get users with notifications enabled
-        const res = await pool.query('SELECT id, telegram_id, username, notification_time FROM users WHERE notifications_enabled = 1');
-        console.log(`Found ${res.rows.length} users with notifications enabled.`);
-
-        for (const user of res.rows) {
-            console.log(`Testing User: ${user.username} (ID: ${user.telegram_id})`);
-            console.log(`Saved Time (UTC): ${user.notification_time}`);
-
-            try {
-                await bot.telegram.sendMessage(user.telegram_id, "🔔 Test Notification: If you see this, the bot works!");
-                console.log(`[SUCCESS] Test message sent to ${user.username}`);
-            } catch (err) {
-                console.error(`[FAILED] Could not send to ${user.username}:`, err.message);
-            }
-        }
-
+        await checkNotifications();
+        console.log('--- Test Completed ---');
     } catch (error) {
         console.error('Test Error:', error);
     } finally {
-        pool.end();
+        // Pool is managed inside scheduler/db module usually, but we might need to force exit
+        // verify_app.js suggests we just let it run or force exit if needed.
+        // The scheduler uses the pool from db.js suitable for long running process.
+        // We will just exit after some time or let it finish.
+        setTimeout(() => process.exit(0), 5000);
     }
 }
 
