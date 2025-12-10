@@ -3,14 +3,14 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 const prompts = require('../config/prompts');
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" }); // Using the requested model or latest available
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" }); // Using the requested model or latest available
 
 async function generateReading(cards, question, spreadType, userContext = {}) {
     console.log('--- Gemini Service Start ---');
     console.log('Input:', { spreadType, question, cardCount: cards.length });
 
     try {
-        const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
         const { name, lang = 'en' } = userContext;
         const languageName = { 'ru': 'Russian', 'uk': 'Ukrainian', 'en': 'English' }[lang] || 'English';
@@ -60,7 +60,7 @@ async function generateReading(cards, question, spreadType, userContext = {}) {
 async function continueChat(history, newMessage, userContext = {}) {
     console.log('--- Gemini Chat Start ---');
     try {
-        const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
         const { lang = 'en' } = userContext;
         const langInstruction = {
