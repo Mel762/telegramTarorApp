@@ -64,7 +64,7 @@ async function checkNotifications() {
         // 4. NOT in notification_history for today (Haven't been notified today).
 
         const query = `
-            SELECT u.id, u.telegram_id, u.username, u.language_code, u.last_daily_reading_date, u.notification_time, u.receive_daily_reading, u.first_name
+            SELECT u.id, u.telegram_id, u.username, u.language_code, u.last_daily_reading_date, u.notification_time, u.receive_daily_reading
             FROM users u
             WHERE u.notifications_enabled = 1 
             AND u.notification_time <= $1
@@ -97,7 +97,7 @@ async function checkNotifications() {
 
                     // 2. Generate Interpretation
                     // We need to pass a name to generateReading
-                    const interpretation = await generateReading(cards, "Daily Reading", "day", { name: user.first_name || user.username, lang });
+                    const interpretation = await generateReading(cards, "Daily Reading", "day", { name: user.username || 'Traveler', lang });
 
                     // 3. Send to Telegram (Image + Caption)
                     // Construct local path or URL? accessible by bot? 
