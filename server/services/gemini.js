@@ -10,7 +10,7 @@ async function generateReading(cards, question, spreadType, userContext = {}) {
     console.log('Input:', { spreadType, question, cardCount: cards.length });
 
     try {
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
 
         const { name, lang = 'en' } = userContext;
         const languageName = { 'ru': 'Russian', 'uk': 'Ukrainian', 'en': 'English' }[lang] || 'English';
@@ -60,7 +60,7 @@ async function generateReading(cards, question, spreadType, userContext = {}) {
 async function continueChat(history, newMessage, userContext = {}) {
     console.log('--- Gemini Chat Start ---');
     try {
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
 
         const { lang = 'en' } = userContext;
         const langInstruction = {
