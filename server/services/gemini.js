@@ -3,7 +3,7 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 const prompts = require('../config/prompts');
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" }); // Using the requested model or latest available
+const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
 
 async function generateReading(cards, question, spreadType, userContext = {}) {
     console.log('--- Gemini Service Start ---');
@@ -53,7 +53,7 @@ async function generateReading(cards, question, spreadType, userContext = {}) {
         return cleanResponse(result.response.text());
     } catch (error) {
         console.error("Gemini API Error Details:", error);
-        return getFallbackMessage(userContext.lang);
+        throw error; // Re-throw to allow caller to handle failure (e.g. not deducting limits)
     }
 }
 

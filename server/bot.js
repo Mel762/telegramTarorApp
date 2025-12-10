@@ -1,5 +1,5 @@
 const { Telegraf } = require('telegraf');
-const { initDb } = require('./database/db');
+const { initDb, pool } = require('./database/db');
 
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
 
@@ -45,12 +45,35 @@ bot.on('successful_payment', async (ctx) => {
         const spreadType = payload.spreadType;
         console.log(`Payment successful for User ${userId}. Spread: ${spreadType}, Amount: ${total_amount} ${currency}`);
 
-        // We don't need to update DB for "subscription" anymore.
-        // We could log this payment to a 'payments' table if we had one, but for now just logging to console is enough.
-        // The frontend will proceed to request the reading upon receiving 'paid' status.
+        // Update User Credits
+        // We use telegram_id (userId from context) to find the user
+        try {
+            const userResult = await pool.query('SELECT id FROM users WHERE telegram_id = $1', [String(userId)]);
+            const user = userResult.rows[0];
+
+            if (user) {
+                if (spreadType === 'one') {
+                    await pool.query('UPDATE users SET free_readings_one = free_readings_one + 1 WHERE id = $1', [user.id]);
+                    console.log(`User ${user.id} purchased 1 free reading (one).`);
+                } else if (spreadType === 'three') {
+                    await pool.query('UPDATE users SET free_readings_three = free_readings_three + 1 WHERE id = $1', [user.id]);
+                    console.log(`User ${user.id} purchased 1 free reading (three).`);
+                }
+            } else {
+                console.error(`User for successful payment not found: ${userId}`);
+            }
+        } catch (dbError) {
+            console.error('Database update error on payment:', dbError);
+        }
 
         // Notify user
-        ctx.reply(`Payment received! ✨ You can now proceed with your reading.`);
+        ctx.reply(`Payment received! ✨ You have unlocked a new ${spreadType === 'one' ? '1-Card' : '3-Card'} reading.`, {
+            reply_markup: {
+                inline_keyboard: [
+                    [{ text: "Open App", web_app: { url: process.env.WEBAPP_URL } }]
+                ]
+            }
+        });
     } catch (error) {
         console.error('Payment processing error:', error);
     }

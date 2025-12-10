@@ -115,14 +115,14 @@ router.post('/reading', async (req, res) => {
             }
         } catch (creditError) {
             console.error('Credit Decrement Error:', creditError);
-        }
 
-        res.json({ reading });
-    } catch (error) {
-        console.error('API Error:', error);
-        res.status(500).json({ error: 'Failed to generate reading' });
-    }
-});
+
+            res.json({ reading });
+        } catch (error) {
+            console.error('API Error:', error);
+            res.status(500).json({ error: 'Failed to generate reading' });
+        }
+    });
 
 router.post('/create-stars-invoice', async (req, res) => {
     const { userId, spreadType } = req.body;

@@ -84,9 +84,8 @@ async function checkNotifications() {
         }
 
         for (const user of users) {
-            // Skip invalid/test users
-            if (!user.telegram_id || user.telegram_id.length < 5) {
-                console.warn(`[Scheduler] Skipping User ${user.id} with invalid Telegram ID: ${user.telegram_id}`);
+            // Basic check
+            if (!user.telegram_id) {
                 continue;
             }
 
