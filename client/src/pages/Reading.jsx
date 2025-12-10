@@ -21,6 +21,7 @@ const Reading = ({ user, t, lang, refreshUser }) => {
     const [isChatLocked, setIsChatLocked] = useState(false);
     const [limitMessage, setLimitMessage] = useState('');
 
+    const [isConfirmed, setIsConfirmed] = useState(false);
     console.log('Current Step:', step);
 
     useEffect(() => {
@@ -186,8 +187,7 @@ const Reading = ({ user, t, lang, refreshUser }) => {
             setStep('reveal');
             setMessages(prev => [...prev, { sender: 'ai', text: data.reading }]);
 
-            // Refresh user data to update credits
-            if (refreshUser) refreshUser();
+            // Refresh user data (credits) will happen after confirmation (first flip)
 
         } catch (error) {
             console.error('Error fetching reading:', error);
@@ -197,10 +197,27 @@ const Reading = ({ user, t, lang, refreshUser }) => {
         }
     };
 
-    const revealCard = (index) => {
+    const revealCard = async (index) => {
         if (isLocked) {
             return;
         }
+
+        // Confirm reading (deduct credits) on first real interaction (flip)
+        if (!isConfirmed) {
+            setIsConfirmed(true);
+            try {
+                await fetch('/api/confirm-reading', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ userId: user?.telegram_id || user?.id, spreadType })
+                });
+                // Update credits in UI
+                if (refreshUser) refreshUser();
+            } catch (err) {
+                console.error('Confirmation error:', err);
+            }
+        }
+
         const newCards = [...cards];
         newCards[index].isRevealed = true;
         setCards(newCards);

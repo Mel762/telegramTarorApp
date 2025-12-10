@@ -90,37 +90,43 @@ router.post('/reading', async (req, res) => {
             log(`DB Save Error: ${dbError}`);
         }
 
-        // Update last_daily_reading_date if it was a daily reading
-        if (spreadType === 'day' && user) {
-            try {
-                await pool.query(`UPDATE users SET last_daily_reading_date = CURRENT_TIMESTAMP WHERE id = $1`, [user.id]);
-            } catch (updateError) {
-                console.error('Error updating last_daily_reading_date:', updateError);
-            }
-        }
-
-        // Decrement Free Credits if applicable
-        try {
-            const userResult = await pool.query('SELECT id, free_readings_one, free_readings_three FROM users WHERE telegram_id = $1', [userId]);
-            const user = userResult.rows[0];
-
-            if (user) {
-                if (spreadType === 'one' && user.free_readings_one > 0) {
-                    await pool.query('UPDATE users SET free_readings_one = free_readings_one - 1 WHERE id = $1', [user.id]);
-                    console.log(`User ${user.id} used 1 free reading (one). Remaining: ${user.free_readings_one - 1}`);
-                } else if (spreadType === 'three' && user.free_readings_three > 0) {
-                    await pool.query('UPDATE users SET free_readings_three = free_readings_three - 1 WHERE id = $1', [user.id]);
-                    console.log(`User ${user.id} used 1 free reading (three). Remaining: ${user.free_readings_three - 1}`);
-                }
-            }
-        } catch (creditError) {
-            console.error('Credit Decrement Error:', creditError);
-        }
+        // Credits/Daily Limit are now deducted in /confirm-reading endpoint upon card flip.
 
         res.json({ reading });
     } catch (error) {
         console.error('API Error:', error);
         res.status(500).json({ error: 'Failed to generate reading' });
+    }
+});
+
+
+router.post('/confirm-reading', async (req, res) => {
+    try {
+        const { userId, spreadType } = req.body;
+        console.log(`Confirming reading for User ${userId}, spread: ${spreadType}`);
+
+        const userResult = await pool.query('SELECT id, free_readings_one, free_readings_three FROM users WHERE telegram_id = $1', [userId]);
+        const user = userResult.rows[0];
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        if (spreadType === 'day') {
+            await pool.query(`UPDATE users SET last_daily_reading_date = CURRENT_TIMESTAMP WHERE id = $1`, [user.id]);
+            console.log(`User ${user.id} confirmed daily reading.`);
+        } else if (spreadType === 'one' && user.free_readings_one > 0) {
+            await pool.query('UPDATE users SET free_readings_one = free_readings_one - 1 WHERE id = $1', [user.id]);
+            console.log(`User ${user.id} confirmed 1 free reading (one).`);
+        } else if (spreadType === 'three' && user.free_readings_three > 0) {
+            await pool.query('UPDATE users SET free_readings_three = free_readings_three - 1 WHERE id = $1', [user.id]);
+            console.log(`User ${user.id} confirmed 1 free reading (three).`);
+        }
+
+        res.json({ success: true });
+    } catch (error) {
+        console.error('Confirm Reading Error:', error);
+        res.status(500).json({ error: 'Failed to confirm reading' });
     }
 });
 
